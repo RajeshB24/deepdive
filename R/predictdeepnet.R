@@ -1,6 +1,16 @@
 
 
-predict.deepnet<-function(object,newData){
+#' Title
+#'
+#' @param object
+#' @param newData
+#'
+#' @return
+#' @export
+#'
+#' @examples
+predict.deepnet<-function(object,
+                          newData){
 
   newData<-data.frame(newData)
   weightMatrix=object[["weightMatrix"]]

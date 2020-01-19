@@ -1,5 +1,16 @@
-#Predict function for buildGroupNet
 
+
+#' Title
+#'
+#' @param object
+#' @param newData
+#' @param treeLeaves
+#' @param stackPred
+#'
+#' @return
+#' @export
+#'
+#' @examples
 predict.deeptree<-function(object,newData,treeLeaves=NA,stackPred=NA){
 
 

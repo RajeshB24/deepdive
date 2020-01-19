@@ -15,7 +15,7 @@
 #' @param optimiser one of "gradientDescent","momentum","rmsProp","adam". Default value "adam"
 #' @param parMomentum numeric. Applicable for optimiser "mometum" and "adam"
 #' @param inputSizeImpact numeric. Adjusts the gradient size by factor of percentage of rows in input. For very small data set setting this to 0 could yeild faster result. Default is 1.
-#' @param parRmsPropZeroAdjust numeric. Applicable for optimiser "rmsPro" and "adam"
+#' @param parRmsPropZeroAdjust numeric. Applicable for optimiser "rmsProp" and "adam"
 #' @param parRmsProp numeric.Applicable for optimiser "rmsProp" and "adam"
 #'
 #' @return returns model object which can be passed into \code{\link{predict.deepnet}}
@@ -225,17 +225,20 @@ previousBiasAdapt<-lapply(1:length(interOutCount), function(b){
   ypred<-data.frame(ypred)
   names(ypred)<-paste0('pred_',names(ypred))
 
-  return(list(fitted=ypred,
-              weightMatrix=weightMatrix,
-              activation=activation,
-              modelType=modelType,
-              outColMax=outColMax,
-              outColMin=outColMin,
-              inColMax=inColMax,
-              inColMin=inColMin,
-              baisUnits=baisUnits,
-              reluLeak=reluLeak,
-              xcolnames=xcolnames))
+  deepnetmod<-list(fitted=ypred,
+                   weightMatrix=weightMatrix,
+                   activation=activation,
+                   modelType=modelType,
+                   outColMax=outColMax,
+                   outColMin=outColMin,
+                   inColMax=inColMax,
+                   inColMin=inColMin,
+                   baisUnits=baisUnits,
+                   reluLeak=reluLeak,
+                   xcolnames=xcolnames)
+  class(deepnetmod)<-"deepnet"
+
+  return(deepnetmod)
 
 }
 

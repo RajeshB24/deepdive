@@ -43,19 +43,23 @@ This is a basic example which shows you how to solve a common problem:
 ```{r example}
 library(deepdive)
 # basic example code
- x <- data.frame(a = runif(1000)*100,
- b = runif(1000)*200,
- c = runif(1000)*100,
- d = runif(1000)*200)
- y<- data.frame(y=20*x$a +30* x$b+10*x$c +10)
+ x <- data.frame(a = runif(100)*100,
+ b = runif(100))
+ y<- data.frame(y=20*x$a +30* x$b+10)
 
- #train
- modelnet<-deepnet(x,y,c(2,2),activation = "relu",
- reluLeak = 0,
+ #train (increase iteration  to improve accuracy)
+ modelnet<-deepnet(x,y,c(1),activation = "relu",
+ reluLeak = 0.001,
  modelType = "regress",
- iterations =500,
- eta=0.8,
+ iterations =5,
+ eta=0.1,
  optimiser="adam")
+ 
+  #predict
+ # predDeepNet<-predict.deepnet(modelnet,newData=x)
+
+ #evaluate
+ #rmse=sqrt(mean((predDeepNet$pred_y-y$y)^2))
 
 ```
 

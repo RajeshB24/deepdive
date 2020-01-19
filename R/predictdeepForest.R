@@ -2,7 +2,17 @@
 
 
 
-predict.deepforest<-function(object,newData){
+#' Title
+#'
+#' @param object
+#' @param newData
+#'
+#' @return
+#' @export
+#'
+#' @examples
+predict.deepforest<-function(object,
+                             newData){
   library(data.table)
   library(rpart)
 

@@ -1,6 +1,39 @@
 
 
 
+#' Title
+#'
+#' @param x
+#' @param y
+#' @param networkCount
+#' @param layerChoice
+#' @param unitsChoice
+#' @param cutVarSizePercent
+#' @param cutDataSizePercent
+#' @param activation
+#' @param reluLeak
+#' @param modelType
+#' @param iterations
+#' @param eta
+#' @param seed
+#' @param gradientClip
+#' @param regularisePar
+#' @param optimiser
+#' @param parMomentum
+#' @param inputSizeImpact
+#' @param parRmsPropZeroAdjust
+#' @param parRmsProp
+#' @param treeLeaves
+#' @param treeMinSplitPercent
+#' @param treeMinSplitCount
+#' @param treeCp
+#' @param errorCover
+#' @param treeAugment
+#'
+#' @return
+#' @export
+#'
+#' @examples
 deepforest<-function(x,y,
                      networkCount=3,
                      layerChoice=c(2:3),
@@ -150,6 +183,8 @@ deepforest<-function(x,y,
   chosenIndex<-which(!is.na(fitPerf)& fitPerf<=errorCoverFit)
   chosenModels<- modelForest[chosenIndex]
 
+  deepforestmod<-list(varCut[chosenIndex],chosenModels,treeAugment)
+  class(deepforestmod)<-'deepforest'
 
-  return(list(varCut[chosenIndex],chosenModels,treeAugment))
+  return(deepforestmod)
 }
