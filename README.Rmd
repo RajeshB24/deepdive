@@ -13,18 +13,21 @@ knitr::opts_chunk$set(
 )
 ```
 # deepdive
+**deepnet->deeptree->deepforest**
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-This package aims to provide simple intuitive functions to create quick protoypes of artificial neural network or deep learning models for general purpose application. In addition, check out experimental algorithms from my personal research , deeptree and deepforest for special cases to achieve better accuracy / generalisation.This github page will be updated for roadmap items and updates for improved fucntionalities and performance updates.
+This package aims to provide simple intuitive functions to create quick protoypes of artificial neural network or deep learning models for general purpose application. In addition, check out experimental algorithms from my personal research , **deeptree** and **deepforest** for special cases to achieve better accuracy / generalisation.
 
-Feel free to reach me out at : rajeshbalakrishnan24@gmail.com for any suggestions and doubts or you can always leave a comment on github.
 
-RoadMap:
-1.Mini batch gradient descent for better performance
-2.Parallelsation of deeptree and deepforest 
-3.
+**deeptree**: This algorithms builds a tree to divide the solution space in to leaves and fits a artificial neural network to each leaf. This approach takes adavantage distinct propeties of a tree and neural network. It has tendency to overfit but multiple parameters can be tuned to achieve better generalisation. This model has a provision to stack predictions from other models.
+
+**deepforest**: This algorithm builds  multiple deepnets/deeptrees from which either best deepnet can be selected by passing all variable and data to each network or random deepnets/deeptrees based on random cuts of variable/data can be combined together over a error choice. 
+
+*Reach me Out@* : rajeshbalakrishnan24@gmail.com for any suggestions and doubts or you can always leave a comment on github.
+
+
 ## Installation
 
 You can install the released version of deepdive from [GitHub](https://github.com/RajeshB24/deepdive) with:
@@ -39,7 +42,7 @@ This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(deepdive)
-## basic example code
+# basic example code
  x <- data.frame(a = runif(1000)*100,
  b = runif(1000)*200,
  c = runif(1000)*100,
@@ -50,7 +53,7 @@ library(deepdive)
  modelnet<-deepnet(x,y,c(2,2),activation = "relu",
  reluLeak = 0,
  modelType = "regress",
- iterations =4000,
+ iterations =500,
  eta=0.8,
  optimiser="adam")
 
