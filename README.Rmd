@@ -25,7 +25,7 @@ This package aims to provide simple intuitive functions to create quick protoype
 
 **deepforest**: This algorithm builds  multiple deepnets/deeptrees from which either best deepnet can be selected by passing all variable and data to each network or random deepnets/deeptrees based on random cuts of variable/data can be combined together over a error choice. 
 
-*Reach me Out@* : rajeshbalakrishnan24@gmail.com for any suggestions and doubts or you can always leave a comment on github.
+*Reach me Out* : rajeshbalakrishnan24@gmail.com for any suggestions and doubts or you can always leave a comment on github.
 
 
 ## Installation
