@@ -1,5 +1,3 @@
-#Below intialises weight updates for momentum model
-
 
 #' Title
 #'
