@@ -9,7 +9,7 @@
 #' @param unitsChoice  vector , number of units choice
 #' @param cutVarSizePercent ratio, percentage of variable to for each network
 #' @param cutDataSizePercent ratio, percentage of data to for each network
-#' @param activation one of "sigmoid","relu","sin","cos","none". The default is "sigmoid". This activation choice will be applied to all hidden layers.
+#' @param activation one of "sigmoid","relu","sin","cos","none". The default is "sigmoid". Choose a activation per hidden layer
 #' @param reluLeak  numeric. Applicable when activation is "relu". Specify value between 0 any number close to zero below 1. Eg: 0.01,0.001 etc
 #' @param modelType  one of "regress","binary","multiClass". "regress" for regression will create a linear single unit output layer. "binary" will create a single unit sigmoid activated layer. "multiClass" will create layer with units corresponding to number of output classes with softmax activation.
 #' @param iterations integer. This indicates number of iteratios or epochs in backpropagtion .The default value is 500.
@@ -48,7 +48,7 @@
 #'                   unitsChoice=c(4:10),
 #'                   cutVarSizePercent=0.6,
 #'                   cutDataSizePercent=0.6,
-#'                   activation = 'relu',
+#'                   activation = c('relu',"sin"),
 #'                   reluLeak=0.01,
 #'                   modelType ='regress',
 #'                   iterations = 500,
@@ -79,7 +79,7 @@ deepforest<-function(x,y,
                      unitsChoice=c(4:10),
                      cutVarSizePercent=0.6,
                      cutDataSizePercent=0.6,
-                     activation = 'relu',
+                     activation = c('sigmoid',"sigmoid"),
                      reluLeak=0,
                      modelType ='regress',
                      iterations = 500,

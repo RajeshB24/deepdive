@@ -3,7 +3,6 @@
 S3method(predict,deepforest)
 S3method(predict,deepnet)
 S3method(predict,deeptree)
-export(backProp)
 export(deepforest)
 export(deepnet)
 export(deeptree)

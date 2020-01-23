@@ -67,21 +67,21 @@ weightUpdate <- function(i,
   for (wn in length(weightMatrix):min(length(weightMatrix), i + 1)) {
 
 
-    if(activation[wn]=="relu"){
+    if(activation[i]=="relu"){
 
       hw = hw %*% t(weightMatrix[[wn]])  * ifelse(zin[[wn - 1]] < 0,reluLeak, 1)
-    }else if(activation[wn]=="none"){
+    }else if(activation[i]=="none"){
 
       hw = hw %*% t(weightMatrix[[wn]])
 
 
-    }else if(activation[wn]=="sigmoid"){
+    }else if(activation[i]=="sigmoid"){
 
       hw = (hw %*% t(weightMatrix[[wn]]))  * (feedOut[[wn - 1]]*(1-feedOut[[wn - 1]]))
-    }else if(activation[wn]=='sin'){
+    }else if(activation[i]=='sin'){
 
       hw = (hw %*% t(weightMatrix[[wn]]))  * cos(zin[[wn - 1]])
-    }else if(activation[wn]=='cos'){
+    }else if(activation[i]=='cos'){
 
       hw = (hw %*% t(weightMatrix[[wn]]))  * sin(zin[[wn - 1]])
     }

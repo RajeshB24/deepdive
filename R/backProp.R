@@ -24,7 +24,7 @@
 #' @param inputSizeImpact
 #'
 #' @return
-#' @export
+#'
 #'
 #' @examples
 backProp <- function(x,y,

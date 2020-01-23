@@ -12,7 +12,7 @@ deepforest(
   unitsChoice = c(4:10),
   cutVarSizePercent = 0.6,
   cutDataSizePercent = 0.6,
-  activation = "relu",
+  activation = c("sigmoid", "sigmoid"),
   reluLeak = 0,
   modelType = "regress",
   iterations = 500,
@@ -53,7 +53,7 @@ deepforest(
 
 \item{cutDataSizePercent}{ratio, percentage of data to for each network}
 
-\item{activation}{one of "sigmoid","relu","sin","cos","none". The default is "sigmoid". This activation choice will be applied to all hidden layers.}
+\item{activation}{one of "sigmoid","relu","sin","cos","none". The default is "sigmoid". Choose a activation per hidden layer}
 
 \item{reluLeak}{numeric. Applicable when activation is "relu". Specify value between 0 any number close to zero below 1. Eg: 0.01,0.001 etc}
 
@@ -116,7 +116,7 @@ mdeepf<-deepforest(x,y,
                   unitsChoice=c(4:10),
                   cutVarSizePercent=0.6,
                   cutDataSizePercent=0.6,
-                  activation = 'relu',
+                  activation = c('relu',"sin"),
                   reluLeak=0.01,
                   modelType ='regress',
                   iterations = 500,

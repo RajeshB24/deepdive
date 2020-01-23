@@ -4,7 +4,7 @@
 #' @param x  a data frame with input variables
 #' @param y  a data frame with ouptut variable
 #' @param hiddenLayerUnits a numeric vector, length of vector indicates number of hidden layers and each element in vector indicates corresponding hidden units Eg: c(6,4) for two layers, one with 6 hiiden units and other with 4 hidden units. Note: Output layer is automatically created.
-#' @param activation one of "sigmoid","relu","sin","cos","none". The default is "sigmoid". This activation choice will be applied to all hidden layers.
+#' @param activation one of "sigmoid","relu","sin","cos","none". The default is "sigmoid". Choose a activation per hidden layer
 #' @param reluLeak  numeric. Applicable when activation is "relu". Specify value between 0 any number close to zero below 1. Eg: 0.01,0.001 etc
 #' @param modelType one of "regress","binary","multiClass". "regress" for regression will create a linear single unit output layer. "binary" will create a single unit sigmoid activated layer. "multiClass" will create layer with units corresponding to number of output classes with softmax activation.
 #' @param iterations integer. This indicates number of iteratios or epochs in backpropagtion .The default value is 500.
@@ -37,7 +37,8 @@
 #' y<- data.frame(y=20*x$a +30* x$b+10*x$c +10)
 #'
 #' #train
-#' modelnet<-deepnet(x,y,c(2,2),activation = "relu",
+#' modelnet<-deepnet(x,y,c(2,2),
+#' activation = c('relu',"sin"),
 #' reluLeak = 0,
 #' modelType = "regress",
 #' iterations =4000,
@@ -54,7 +55,7 @@
 deepnet<- function(x,
                     y,
                     hiddenLayerUnits,
-                    activation = c('sigmoid'),
+                    activation =c('sigmoid',"sigmoid"),
                     reluLeak=0,
                     modelType = c('regress'),
                     iterations = 500,
