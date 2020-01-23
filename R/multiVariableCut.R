@@ -3,6 +3,17 @@
 
 
 
+#' Title
+#'
+#' @param x
+#' @param cutVarSizePercent
+#' @param networkCount
+#' @param seed
+#'
+#' @return
+#' @export
+#'
+#' @examples
 multiVariableCut<-function(x,cutVarSizePercent,networkCount,seed){
   varName=names(x)
 

@@ -1,6 +1,17 @@
 #Below intialises weight updates for momentum model
 
 
+#' Title
+#'
+#' @param i
+#' @param interVariableCount
+#' @param interOutCount
+#' @param seed
+#'
+#' @return
+#' @export
+#'
+#' @examples
 weightUpdateInitialiser <- function(i,interVariableCount,interOutCount,seed) {
   set.seed(seed)
 

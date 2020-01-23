@@ -1,5 +1,29 @@
 
-#Weight Update in HiddenLayers for Back propagation algorithm(no output layer)
+#' Title
+#'
+#' @param i
+#' @param AllWeights
+#' @param feedOut
+#' @param x
+#' @param y
+#' @param ypred
+#' @param zin
+#' @param activation
+#' @param reluLeak
+#' @param eta
+#' @param gradientClip
+#' @param regularisePar
+#' @param itr
+#' @param optimiser
+#' @param parMomentum
+#' @param parRmsProp
+#' @param parRmsPropZeroAdjust
+#' @param sizeImpact
+#'
+#' @return
+#' @export
+#'
+#' @examples
 weightUpdate <- function(i,
                          AllWeights,
                          feedOut,
@@ -43,21 +67,21 @@ weightUpdate <- function(i,
   for (wn in length(weightMatrix):min(length(weightMatrix), i + 1)) {
 
 
-    if(activation=="relu"){
+    if(activation[wn]=="relu"){
 
       hw = hw %*% t(weightMatrix[[wn]])  * ifelse(zin[[wn - 1]] < 0,reluLeak, 1)
-    }else if(activation=="none"){
+    }else if(activation[wn]=="none"){
 
       hw = hw %*% t(weightMatrix[[wn]])
 
 
-    }else if(activation=="sigmoid"){
+    }else if(activation[wn]=="sigmoid"){
 
       hw = (hw %*% t(weightMatrix[[wn]]))  * (feedOut[[wn - 1]]*(1-feedOut[[wn - 1]]))
-    }else if(activation=='sin'){
+    }else if(activation[wn]=='sin'){
 
       hw = (hw %*% t(weightMatrix[[wn]]))  * cos(zin[[wn - 1]])
-    }else if(activation=='cos'){
+    }else if(activation[wn]=='cos'){
 
       hw = (hw %*% t(weightMatrix[[wn]]))  * sin(zin[[wn - 1]])
     }

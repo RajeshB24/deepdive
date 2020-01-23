@@ -1,4 +1,17 @@
 
+#' Title
+#'
+#' @param x
+#' @param y
+#' @param networkCount
+#' @param cutDataSizePercent
+#' @param cutVarSizePercent
+#' @param seed
+#'
+#' @return
+#' @export
+#'
+#' @examples
 multiDataCut<-function(x,y,networkCount,cutDataSizePercent,cutVarSizePercent,seed){
 
   inputLen= nrow(x)

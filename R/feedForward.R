@@ -3,6 +3,19 @@
 
 #FeedForward forward algorithm for ANN
 
+#' Title
+#'
+#' @param xBiased
+#' @param weightMatrix
+#' @param activation
+#' @param reluLeak
+#' @param modelType
+#' @param baisUnits
+#'
+#' @return
+#' @export
+#'
+#' @examples
 feedForward <- function(xBiased, weightMatrix, activation,reluLeak, modelType,baisUnits) {
 
 
@@ -34,21 +47,21 @@ feedForward <- function(xBiased, weightMatrix, activation,reluLeak, modelType,ba
 
       if (i < length(weightMatrix)) {
 
-        if(activation=="relu"){
+        if(activation[i]=="relu"){
 
 
           a_input <- ifelse(z_input < 0, reluLeak, z_input)
-          }else if( activation=="none"){
+          }else if( activation[i]=="none"){
 
             a_input<-z_input
 
-          }else if (activation=="sigmoid"){
+          }else if (activation[i]=="sigmoid"){
             a_input<-1/(1+exp(-z_input))
 
 
-          }else if (activation=="sin"){
+          }else if (activation[i]=="sin"){
             a_input<-sin(z_input)
-          }else if (activation=="cos"){
+          }else if (activation[i]=="cos"){
             a_input<-cos(z_input)
 
 

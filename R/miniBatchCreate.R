@@ -1,4 +1,14 @@
 
+#' Title
+#'
+#' @param xrows
+#' @param miniBatchSize
+#' @param prevBatch
+#'
+#' @return
+#' @export
+#'
+#' @examples
 miniBatchCreate<-function(xrows,miniBatchSize,prevBatch){
 
   maxBatch<-ceiling(xrows/miniBatchSize)

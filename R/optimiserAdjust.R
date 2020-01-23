@@ -1,4 +1,22 @@
 
+#' Title
+#'
+#' @param i
+#' @param dw
+#' @param db
+#' @param optimiser
+#' @param parMomentum
+#' @param parRmsProp
+#' @param parRmsPropZeroAdjust
+#' @param previousWeightUpdate
+#' @param previousBiasUpdate
+#' @param previousWeightAdapt
+#' @param previousBiasAdapt
+#'
+#' @return
+#' @export
+#'
+#' @examples
 optimiserAdjust<-function(i,dw,db,optimiser,parMomentum,parRmsProp,parRmsPropZeroAdjust,
                           previousWeightUpdate,
                           previousBiasUpdate,

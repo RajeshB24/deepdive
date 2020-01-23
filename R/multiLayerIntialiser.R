@@ -1,5 +1,16 @@
 #MultiLayer and MultiUnits
 
+#' Title
+#'
+#' @param layerChoice
+#' @param unitsChoice
+#' @param networkCount
+#' @param seed
+#'
+#' @return
+#' @export
+#'
+#' @examples
 multiLayerIntialiser<-function(layerChoice,
                                unitsChoice,
                                networkCount,seed){
