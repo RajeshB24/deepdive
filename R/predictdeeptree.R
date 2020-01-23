@@ -1,6 +1,6 @@
 
 
-#' Title
+#' Predict Function for Deeptree
 #'
 #' @param object
 #' @param newData

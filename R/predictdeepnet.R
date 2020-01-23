@@ -1,6 +1,6 @@
 
 
-#' Title
+#' Predict Function for Deepnet
 #'
 #' @param object
 #' @param newData

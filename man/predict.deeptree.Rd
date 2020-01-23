@@ -2,7 +2,7 @@
 % Please edit documentation in R/predictdeeptree.R
 \name{predict.deeptree}
 \alias{predict.deeptree}
-\title{Title}
+\title{Predict Function for Deeptree}
 \usage{
 \method{predict}{deeptree}(object, newData, treeLeaves = NA, stackPred = NA)
 }
@@ -13,5 +13,5 @@
 
 }
 \description{
-Title
+Predict Function for Deeptree
 }

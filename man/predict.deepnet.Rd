@@ -2,7 +2,7 @@
 % Please edit documentation in R/predictdeepnet.R
 \name{predict.deepnet}
 \alias{predict.deepnet}
-\title{Title}
+\title{Predict Function for Deepnet}
 \usage{
 \method{predict}{deepnet}(object, newData)
 }
@@ -13,5 +13,5 @@
 
 }
 \description{
-Title
+Predict Function for Deepnet
 }
