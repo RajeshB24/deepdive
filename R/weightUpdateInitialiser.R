@@ -7,7 +7,7 @@
 #' @param seed
 #'
 #' @return
-#' @export
+#'
 #'
 #' @examples
 weightUpdateInitialiser <- function(i,interVariableCount,interOutCount,seed) {

@@ -21,7 +21,7 @@
 #' @param sizeImpact
 #'
 #' @return
-#' @export
+#'
 #'
 #' @examples
 weightUpdate <- function(i,
