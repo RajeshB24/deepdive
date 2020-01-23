@@ -1,5 +1,5 @@
 
-#' Title
+#' Weight Update to Gradients fro deepnet
 #'
 #' @param i
 #' @param AllWeights
@@ -22,7 +22,7 @@
 #'
 #' @return
 #'
-#'
+#' @export
 #' @examples
 weightUpdate <- function(i,
                          AllWeights,

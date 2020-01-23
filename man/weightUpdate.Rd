@@ -2,7 +2,7 @@
 % Please edit documentation in R/weightUpdate.R
 \name{weightUpdate}
 \alias{weightUpdate}
-\title{Title}
+\title{Weight Update to Gradients fro deepnet}
 \usage{
 weightUpdate(
   i,
@@ -32,5 +32,5 @@ weightUpdate(
 
 }
 \description{
-Title
+Weight Update to Gradients fro deepnet
 }

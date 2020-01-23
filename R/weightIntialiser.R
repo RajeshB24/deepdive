@@ -1,7 +1,5 @@
-#Below function returns intial weights for all layers
 
-
-#' Title
+#' weight Initialisation for deepnet
 #'
 #' @param i
 #' @param interVariableCount
@@ -10,7 +8,7 @@
 #' @param activation
 #'
 #' @return
-#'
+#' @export
 #'
 #' @examples
 weightInitialiser <- function(i,interVariableCount,interOutCount,seed,activation) {

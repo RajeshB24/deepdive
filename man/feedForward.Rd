@@ -2,7 +2,7 @@
 % Please edit documentation in R/feedForward.R
 \name{feedForward}
 \alias{feedForward}
-\title{Title}
+\title{FeedForward for deepnet}
 \usage{
 feedForward(xBiased, weightMatrix, activation, reluLeak, modelType, baisUnits)
 }
@@ -13,5 +13,5 @@ feedForward(xBiased, weightMatrix, activation, reluLeak, modelType, baisUnits)
 
 }
 \description{
-Title
+FeedForward for deepnet
 }

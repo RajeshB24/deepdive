@@ -1,6 +1,5 @@
 
-#Back Propagtion algorithm
-#' Title
+#' BackProp for deepnet
 #'
 #' @param x
 #' @param y
@@ -24,7 +23,7 @@
 #' @param inputSizeImpact
 #'
 #' @return
-#'
+#' @export
 #'
 #' @examples
 backProp <- function(x,y,

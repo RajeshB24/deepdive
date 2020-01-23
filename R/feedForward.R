@@ -1,9 +1,6 @@
 
 
-
-#FeedForward forward algorithm for ANN
-
-#' Title
+#' FeedForward for deepnet
 #'
 #' @param xBiased
 #' @param weightMatrix
@@ -13,7 +10,7 @@
 #' @param baisUnits
 #'
 #' @return
-#'
+#' @export
 #'
 #' @examples
 feedForward <- function(xBiased, weightMatrix, activation,reluLeak, modelType,baisUnits) {

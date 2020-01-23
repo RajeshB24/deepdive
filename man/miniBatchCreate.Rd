@@ -2,7 +2,7 @@
 % Please edit documentation in R/miniBatchCreate.R
 \name{miniBatchCreate}
 \alias{miniBatchCreate}
-\title{Title}
+\title{Mini Batch Creator for deepnet}
 \usage{
 miniBatchCreate(xrows, miniBatchSize, prevBatch)
 }
@@ -13,5 +13,5 @@ miniBatchCreate(xrows, miniBatchSize, prevBatch)
 
 }
 \description{
-Title
+Mini Batch Creator for deepnet
 }

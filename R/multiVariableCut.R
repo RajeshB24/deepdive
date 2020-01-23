@@ -3,7 +3,7 @@
 
 
 
-#' Title
+#' Random Variable cuts for deepforest
 #'
 #' @param x
 #' @param cutVarSizePercent
@@ -11,7 +11,7 @@
 #' @param seed
 #'
 #' @return
-#'
+#' @export
 #'
 #' @examples
 multiVariableCut<-function(x,cutVarSizePercent,networkCount,seed){

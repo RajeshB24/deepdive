@@ -2,7 +2,7 @@
 % Please edit documentation in R/multiLayerIntialiser.R
 \name{multiLayerIntialiser}
 \alias{multiLayerIntialiser}
-\title{Title}
+\title{Multi Layer Initialisation for deepforest}
 \usage{
 multiLayerIntialiser(layerChoice, unitsChoice, networkCount, seed)
 }
@@ -13,5 +13,5 @@ multiLayerIntialiser(layerChoice, unitsChoice, networkCount, seed)
 
 }
 \description{
-Title
+Multi Layer Initialisation for deepforest
 }

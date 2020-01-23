@@ -2,7 +2,7 @@
 
 
 
-#' Title
+#' Predict Function for DeepForest
 #'
 #' @param object
 #' @param newData

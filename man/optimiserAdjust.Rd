@@ -2,7 +2,7 @@
 % Please edit documentation in R/optimiserAdjust.R
 \name{optimiserAdjust}
 \alias{optimiserAdjust}
-\title{Title}
+\title{OptimserAdjustments to Gradent for deepnet}
 \usage{
 optimiserAdjust(
   i,
@@ -25,5 +25,5 @@ optimiserAdjust(
 
 }
 \description{
-Title
+OptimserAdjustments to Gradent for deepnet
 }

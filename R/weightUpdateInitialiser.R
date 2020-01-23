@@ -1,5 +1,5 @@
 
-#' Title
+#' Weight Update Initialisation for deepnet
 #'
 #' @param i
 #' @param interVariableCount
@@ -7,7 +7,7 @@
 #' @param seed
 #'
 #' @return
-#'
+#' @export
 #'
 #' @examples
 weightUpdateInitialiser <- function(i,interVariableCount,interOutCount,seed) {

@@ -2,7 +2,7 @@
 % Please edit documentation in R/backProp.R
 \name{backProp}
 \alias{backProp}
-\title{Title}
+\title{BackProp for deepnet}
 \usage{
 backProp(
   x,
@@ -34,5 +34,5 @@ backProp(
 
 }
 \description{
-Title
+BackProp for deepnet
 }

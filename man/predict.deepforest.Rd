@@ -2,7 +2,7 @@
 % Please edit documentation in R/predictdeepForest.R
 \name{predict.deepforest}
 \alias{predict.deepforest}
-\title{Title}
+\title{Predict Function for DeepForest}
 \usage{
 \method{predict}{deepforest}(object, newData)
 }
@@ -13,5 +13,5 @@
 
 }
 \description{
-Title
+Predict Function for DeepForest
 }

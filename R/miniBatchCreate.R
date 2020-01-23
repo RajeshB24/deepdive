@@ -1,12 +1,12 @@
 
-#' Title
+#' Mini Batch Creator for deepnet
 #'
 #' @param xrows
 #' @param miniBatchSize
 #' @param prevBatch
 #'
 #' @return
-#'
+#' @export
 #'
 #' @examples
 miniBatchCreate<-function(xrows,miniBatchSize,prevBatch){

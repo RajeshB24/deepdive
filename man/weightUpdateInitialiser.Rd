@@ -2,7 +2,7 @@
 % Please edit documentation in R/weightUpdateInitialiser.R
 \name{weightUpdateInitialiser}
 \alias{weightUpdateInitialiser}
-\title{Title}
+\title{Weight Update Initialisation for deepnet}
 \usage{
 weightUpdateInitialiser(i, interVariableCount, interOutCount, seed)
 }
@@ -13,5 +13,5 @@ weightUpdateInitialiser(i, interVariableCount, interOutCount, seed)
 
 }
 \description{
-Title
+Weight Update Initialisation for deepnet
 }

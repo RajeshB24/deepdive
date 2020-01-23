@@ -2,7 +2,7 @@
 % Please edit documentation in R/multiVariableCut.R
 \name{multiVariableCut}
 \alias{multiVariableCut}
-\title{Title}
+\title{Random Variable cuts for deepforest}
 \usage{
 multiVariableCut(x, cutVarSizePercent, networkCount, seed)
 }
@@ -13,5 +13,5 @@ multiVariableCut(x, cutVarSizePercent, networkCount, seed)
 
 }
 \description{
-Title
+Random Variable cuts for deepforest
 }

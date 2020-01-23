@@ -2,7 +2,7 @@
 % Please edit documentation in R/multiDataCut.R
 \name{multiDataCut}
 \alias{multiDataCut}
-\title{Title}
+\title{Random Data Cut for deepforest}
 \usage{
 multiDataCut(x, y, networkCount, cutDataSizePercent, cutVarSizePercent, seed)
 }
@@ -13,5 +13,5 @@ multiDataCut(x, y, networkCount, cutDataSizePercent, cutVarSizePercent, seed)
 
 }
 \description{
-Title
+Random Data Cut for deepforest
 }

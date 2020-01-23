@@ -1,6 +1,6 @@
-#MultiLayer and MultiUnits
 
-#' Title
+
+#' Multi Layer Initialisation for deepforest
 #'
 #' @param layerChoice
 #' @param unitsChoice
@@ -8,7 +8,7 @@
 #' @param seed
 #'
 #' @return
-#'
+#' @export
 #'
 #' @examples
 multiLayerIntialiser<-function(layerChoice,
