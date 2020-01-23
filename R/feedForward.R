@@ -13,7 +13,7 @@
 #' @param baisUnits
 #'
 #' @return
-#' @export
+#'
 #'
 #' @examples
 feedForward <- function(xBiased, weightMatrix, activation,reluLeak, modelType,baisUnits) {

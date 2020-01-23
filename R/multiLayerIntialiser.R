@@ -8,7 +8,7 @@
 #' @param seed
 #'
 #' @return
-#' @export
+#'
 #'
 #' @examples
 multiLayerIntialiser<-function(layerChoice,

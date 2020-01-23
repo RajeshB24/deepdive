@@ -9,7 +9,7 @@
 #' @param seed
 #'
 #' @return
-#' @export
+#'
 #'
 #' @examples
 multiDataCut<-function(x,y,networkCount,cutDataSizePercent,cutVarSizePercent,seed){

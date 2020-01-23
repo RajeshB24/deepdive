@@ -6,7 +6,7 @@
 #' @param prevBatch
 #'
 #' @return
-#' @export
+#'
 #'
 #' @examples
 miniBatchCreate<-function(xrows,miniBatchSize,prevBatch){

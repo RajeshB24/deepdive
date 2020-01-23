@@ -11,7 +11,7 @@
 #' @param seed
 #'
 #' @return
-#' @export
+#'
 #'
 #' @examples
 multiVariableCut<-function(x,cutVarSizePercent,networkCount,seed){
