@@ -21,7 +21,7 @@ backProp <- function(x,y,
   zin <- feedList$z_in
 
   ypred = feedOut[[length(feedOut)]]
-  costFun <- sum((ypred - y) ^ 2)
+  #costFun <- sum((ypred - y) ^ 2)
 
   for (i in length(weightMatrix):1) {
 
@@ -90,7 +90,8 @@ backProp <- function(x,y,
                        previousWeightUpdate=previousWeightUpdate,
                        previousBiasUpdate=previousBiasUpdate,
                        previousWeightAdapt=previousWeightAdapt,
-                       previousBiasAdapt=previousBiasAdapt)
+                       previousBiasAdapt=previousBiasAdapt,
+                       ypred=ypred)
 
 
     } else{

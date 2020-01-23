@@ -20,7 +20,13 @@ deepnet(
   parMomentum = 0.9,
   inputSizeImpact = 1,
   parRmsPropZeroAdjust = 10^-8,
-  parRmsProp = 0.9999
+  parRmsProp = 0.9999,
+  printItrSize = 100,
+  showProgress = T,
+  stopError = 0.01,
+  miniBatchSize = NA,
+  useBatchProgress = T,
+  ignoreNAerror = F
 )
 }
 \arguments{

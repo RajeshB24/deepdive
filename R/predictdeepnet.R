@@ -6,8 +6,8 @@
 #' @param newData
 #'
 #' @return
+#' @export predict.deepnet
 #' @export
-#'
 #' @examples
 predict.deepnet<-function(object,
                           newData){

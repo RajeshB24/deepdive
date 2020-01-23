@@ -30,7 +30,12 @@ deepforest(
   treeMinSplitCount = 100,
   treeCp = 0.01,
   errorCover = 0.2,
-  treeAugment = T
+  treeAugment = T,
+  printItrSize = 100,
+  showProgress = T,
+  stopError = 0.01,
+  miniBatchSize = NA,
+  useBatchProgress = T
 )
 }
 \arguments{
@@ -41,4 +46,7 @@ deepforest(
 }
 \description{
 Title
+}
+\examples{
+
 }

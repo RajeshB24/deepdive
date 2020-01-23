@@ -59,12 +59,21 @@ deepnet<- function(x,
                     parMomentum=0.9,
                     inputSizeImpact=1,
                     parRmsPropZeroAdjust=10^-8,
-                    parRmsProp=0.9999
+                    parRmsProp=0.9999,
+                    printItrSize=100,
+                    showProgress=T,
+                    stopError=0.01,
+                    miniBatchSize=NA,
+                    useBatchProgress=T,
+                    ignoreNAerror=F
 ) {
+
+  if(is.na(miniBatchSize)){
+    miniBatchSize=nrow(x)
+  }
 
 
   set.seed(seed)
-
 
    xcolnames<-names(x)
    if(is.character(y)){
@@ -127,13 +136,13 @@ deepnet<- function(x,
   })
 
 
-  y<-as.matrix(y)
+ # y<-as.matrix(y)
 
-  x<-as.matrix(cbind(const = rep(1, nrow(x)), x))
+#  x<-as.matrix(cbind(const = rep(1, nrow(x)), x))
 
 
-#  msgIter<-seq(0,iterations,by=max(1,min(round(iterations/10),100)))
- msgIter<-seq(0,iterations,by=iterations/100)
+  x<-cbind(const = rep(1, nrow(x)), x)
+
 
 
   AllWeights<-list(weightMatrix=weightMatrix,
@@ -169,11 +178,33 @@ previousBiasAdapt<-lapply(1:length(interOutCount), function(b){
   }
 })
 
+
+printItrSize<-min(round(iterations/5,0),printItrSize)
+msgIter<-seq(0,iterations,by=printItrSize)
+
+if(max(msgIter)<iterations){
+  msgIter<-c(msgIter,iterations)
+}
+
+
   for (itr in 1:iterations) {
 
 
+    if(itr==1){
+      prevBatch=0
+    }
 
-    AllWeights <- backProp(x,y, weightMatrix, activation,reluLeak,
+    miniBatchIndex<-miniBatchCreate(nrow(x),miniBatchSize,prevBatch)
+    prevBatch<-miniBatchIndex$bacthNo
+
+    batchupper=miniBatchIndex[,"batchupper"]
+    batchlower=miniBatchIndex[,"batchlower"]
+
+
+
+    AllWeights <- backProp(as.matrix(x[batchlower:batchupper,]),
+                           as.matrix(y[batchlower:batchupper,]),
+                           weightMatrix, activation,reluLeak,
                                 modelType, eta,
                                 gradientClip,baisUnits,
                                 regularisePar,itr,optimiser,
@@ -191,41 +222,98 @@ previousBiasAdapt<-lapply(1:length(interOutCount), function(b){
     previousWeightAdapt    <-AllWeights$previousWeightAdapt
     previousBiasAdapt      <-AllWeights$previousBiasAdapt
 
-    feedList <- feedForward(x, weightMatrix, activation,reluLeak, modelType,baisUnits)
-    feedOut <- feedList$a_output
-    ypred <- feedOut[[length(feedOut)]]
-
-    curcost<-sum((ypred - y) ^ 2)
-
-#if(i==1){costFun=curcost}else if(curcost<costFun){
-    costFun <- curcost
-#}else{
-
- # if(modelType=="regress"){
-  #  print("Suggestion: Reduce eta ")
-#  break()}else{
- # costFun <- curcost}
-  #}
-
     if(itr %in% msgIter){
-    print(paste0("iteration ",itr,": ",costFun))}
-  }
+
+       if(useBatchProgress==T){
+         itry<- as.matrix(y[batchlower:batchupper,])
+         feedList <- feedForward(as.matrix(x[batchlower:batchupper,]),
+                                 weightMatrix,
+                                 activation,
+                                 reluLeak,
+                                 modelType,baisUnits)
+    }else{
+      itry<-as.matrix(y)
+      feedList <- feedForward(as.matrix(x),
+                              weightMatrix,
+                              activation,
+                              reluLeak,
+                              modelType,baisUnits)
+      }
 
 
-  feedListOut<-feedForward(x,weightMatrix,activation,reluLeak,modelType,baisUnits)
 
-  feedOut<-feedListOut$a_output
-  ypred<-feedOut[[length(feedOut)]]
+      feedOut <- feedList$a_output
+      itrypred <- feedOut[[length(feedOut)]]
 
-  for(i in 1:ncol(y)){
-    ypred[,i]<-ypred[,i]*(outColMax[i]-outColMin[i])+outColMin[i]
 
-  }
 
-  ypred<-data.frame(ypred)
-  names(ypred)<-paste0('pred_',names(ypred))
+      for(ci in 1:ncol(itrypred)){
 
-  deepnetmod<-list(fitted=ypred,
+        itrypred[,ci]<-itrypred[,ci]*(outColMax[ci]-outColMin[ci])+outColMin[ci]
+
+        }
+
+      for(ci in 1:ncol(y)){
+
+        itry[,ci]<-itry[,ci]*(outColMax[ci]-outColMin[ci])+outColMin[ci]}
+
+      #rmse
+
+      costFun<-sqrt(mean((itrypred - itry) ^ 2))
+
+}
+
+      if(showProgress==T){
+    if(itr %in% msgIter){
+
+    print(paste0("iteration ",
+                ifelse(itr==iterations,itr, itr-1)
+                 ,": ",costFun))
+    }
+
+
+      }
+    if(itr %in% msgIter ){
+      if(is.na(costFun)){
+        if(ignoreNAerror==F){
+        print("NA error please change eta")
+
+        break();}
+      }
+      if(is.nan(costFun)){
+        print("NaN error please change eta")
+        break();
+      }
+
+
+      if( !is.na(stopError)& !is.na(costFun)){
+      if(costFun<=stopError){
+        print(paste0("iteration ",itr,": ",costFun))
+        print("Reached stop error")
+        break();
+
+      }}
+
+      }
+
+    }
+
+
+ # feedListOut<-feedForward(x,weightMatrix,activation,reluLeak,modelType,baisUnits)
+
+  #feedOut<-feedListOut$a_output
+  #ypred<-feedOut[[length(feedOut)]]
+
+  #for(i in 1:ncol(y)){
+
+   # ypred[,i]<-ypred[,i]*(outColMax[i]-outColMin[i])+outColMin[i]}
+
+
+
+  #ypred<-data.frame(ypred)
+  #names(ypred)<-paste0('pred_',names(ypred))
+
+  deepnetmod<-list(#fitted=ypred,
                    weightMatrix=weightMatrix,
                    activation=activation,
                    modelType=modelType,

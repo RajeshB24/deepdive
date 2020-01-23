@@ -23,13 +23,16 @@
 #' @param treeLeaves vector.Optional , leaves numbers from externally trained tree model can be supplied here. If supplied then model will not build a explicit tree and just fit a neural network to mentioned leaves.
 #' @param treeMinSplitPercent numeric. This parameter controls depth of tree setting min split count for leaf subdivision as percentage of observations. Final minimum split will be chosen as max of count calculted with treeMinSplitPercent and treeMinSplitCount. Default 0.3. Range 0 to 1.
 #' @param treeMinSplitCount numeric. This parameter controls depth of tree setting min split count.Final minimum split will be chosen as max of count calculted with treeMinSplitPercent and treeMinSplitCount. Default 30
-#' @param treeCp complexity parameter. \code{\link{rpart::cp}}
+#' @param treeCp complexity parameter. \code{\link{rpart.control}}
 #' @param stackPred vector.Predictions from buildnet or other models can be supplied here. If for certain leaf stackPrep accuracy is better then stackpred predictions will be chosen.
 #'
 #' @return
 #' @export
-#'
+#' @import rpart
+#' @import data.table
 #' @examples
+
+
 deeptree<-function(     x,
                         y,
                         hiddenLayerUnits,
@@ -50,10 +53,13 @@ deeptree<-function(     x,
                         treeMinSplitPercent=0.3,
                         treeMinSplitCount=30,
                         treeCp=0.01 ,
-                        stackPred=NA    ){
-
-library(rpart)
-
+                        stackPred=NA,
+                        printItrSize=100,
+                        showProgress=T,
+                        stopError=0.01,
+                        miniBatchSize=NA,
+                        useBatchProgress=T,
+                        ignoreNAerror=F){
 
 
 
@@ -61,7 +67,7 @@ library(rpart)
 
 
     preBuiltTree<-F
-    treeMod<-rpart::rpart(formula(paste0(names(y),"~.")),
+    treeMod<-rpart(formula(paste0(names(y),"~.")),
                           cbind.data.frame(x,y),
                           control = rpart.control(minsplit =max(treeMinSplitCount,
                                                 round(treeMinSplitPercent*nrow(x),0)),cp=0.01))
@@ -127,7 +133,13 @@ return(names(x[[s]])[idx])
                        parMomentum,
                        inputSizeImpact,
                        parRmsPropZeroAdjust,
-                       parRmsProp)})
+                       parRmsProp,
+                       printItrSize,
+                       showProgress,
+                       stopError,
+                       miniBatchSize,
+                       useBatchProgress,
+                       ignoreNAerror)})
 
 
 

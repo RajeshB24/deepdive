@@ -122,6 +122,7 @@ weightUpdate <- function(i,
               previousWeightUpdate=previousWeightUpdate,
               previousBiasUpdate=previousBiasUpdate,
               previousWeightAdapt=previousWeightAdapt,
-              previousBiasAdapt=previousBiasAdapt
+              previousBiasAdapt=previousBiasAdapt,
+              ypred=ypred
               ))
 }

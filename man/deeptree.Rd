@@ -25,7 +25,13 @@ deeptree(
   treeMinSplitPercent = 0.3,
   treeMinSplitCount = 30,
   treeCp = 0.01,
-  stackPred = NA
+  stackPred = NA,
+  printItrSize = 100,
+  showProgress = T,
+  stopError = 0.01,
+  miniBatchSize = NA,
+  useBatchProgress = T,
+  ignoreNAerror = F
 )
 }
 \arguments{
@@ -67,7 +73,7 @@ deeptree(
 
 \item{treeMinSplitCount}{numeric. This parameter controls depth of tree setting min split count.Final minimum split will be chosen as max of count calculted with treeMinSplitPercent and treeMinSplitCount. Default 30}
 
-\item{treeCp}{complexity parameter. \code{\link{rpart::cp}}}
+\item{treeCp}{complexity parameter. \code{\link{rpart.control}}}
 
 \item{stackPred}{vector.Predictions from buildnet or other models can be supplied here. If for certain leaf stackPrep accuracy is better then stackpred predictions will be chosen.}
 }

@@ -9,12 +9,12 @@
 #'
 #' @return
 #' @export
-#'
+#' @export predict.deepforest
+#' @importFrom  data.table rbindlist
+#' @import rpart
 #' @examples
 predict.deepforest<-function(object,
                              newData){
-  library(data.table)
-  library(rpart)
 
   varCut=object[[1]]
   modelGroup=object[[2]]

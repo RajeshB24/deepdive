@@ -32,8 +32,11 @@
 #'
 #' @return
 #' @export
-#'
+#' @import rpart
+#' @import data.table
+#' @importFrom treeClust rpart.predict.leaves
 #' @examples
+#'
 deepforest<-function(x,y,
                      networkCount=3,
                      layerChoice=c(2:3),
@@ -58,7 +61,13 @@ deepforest<-function(x,y,
                      treeMinSplitCount=100,
                      treeCp=0.01 ,
                      errorCover=0.2,
-                     treeAugment=T
+                     treeAugment=T,
+                     printItrSize=100,
+                     showProgress=T,
+                     stopError=0.01,
+                     miniBatchSize=NA,
+                     useBatchProgress=T
+
 ){
 
 
@@ -101,7 +110,13 @@ deepforest<-function(x,y,
                          parMomentum,
                          inputSizeImpact,
                          parRmsPropZeroAdjust,
-                         parRmsProp)
+                         parRmsProp,
+                         printItrSize,
+                         showProgress,
+                         stopError,
+                         miniBatchSize,
+                         useBatchProgress,
+                         ignoreNAerror=T)
 
 
       }else{
@@ -131,7 +146,13 @@ deepforest<-function(x,y,
                                          treeMinSplitPercent,
                                          treeMinSplitCount,
                                          treeCp ,
-                                         stackPred=NA    )
+                                         stackPred=NA ,
+                                         printItrSize,
+                                         showProgress,
+                                         stopError,
+                                         miniBatchSize,
+                                         useBatchProgress,
+                                         ignoreNAerror=T)
 
 
 

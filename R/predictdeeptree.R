@@ -9,15 +9,15 @@
 #'
 #' @return
 #' @export
-#'
+#' @export predict.deeptree
+#' @importFrom  data.table rbindlist
+#' @import rpart
+#' @importFrom treeClust rpart.predict.leaves
 #' @examples
 predict.deeptree<-function(object,newData,treeLeaves=NA,stackPred=NA){
 
 
 
-
-  library(data.table)
-  library(rpart)
 
   useStackPred=object$useStackPred
 
@@ -43,7 +43,7 @@ if(object[["preBuiltTree"]]){
 
   }}else{
 
-    treeLeaves=treeClust::rpart.predict.leaves(object[["treeMod"]],newData)
+    treeLeaves=rpart.predict.leaves(object[["treeMod"]],newData)
 
 
   }
