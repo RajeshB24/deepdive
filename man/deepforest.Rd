@@ -2,7 +2,7 @@
 % Please edit documentation in R/deepForest.R
 \name{deepforest}
 \alias{deepforest}
-\title{Title}
+\title{Build or train bagged deeptree or deepnet of multiple architecture}
 \usage{
 deepforest(
   x,
@@ -39,14 +39,106 @@ deepforest(
 )
 }
 \arguments{
-\item{treeAugment}{}
+\item{x}{a data frame with input variables}
+
+\item{y}{a data frame with ouptut variable}
+
+\item{networkCount}{Integer, Number of deepnet or deeptree to build}
+
+\item{layerChoice}{vector, different layer choices}
+
+\item{unitsChoice}{vector , number of units choice}
+
+\item{cutVarSizePercent}{ratio, percentage of variable to for each network}
+
+\item{cutDataSizePercent}{ratio, percentage of data to for each network}
+
+\item{activation}{one of "sigmoid","relu","sin","cos","none". The default is "sigmoid". This activation choice will be applied to all hidden layers.}
+
+\item{reluLeak}{numeric. Applicable when activation is "relu". Specify value between 0 any number close to zero below 1. Eg: 0.01,0.001 etc}
+
+\item{modelType}{one of "regress","binary","multiClass". "regress" for regression will create a linear single unit output layer. "binary" will create a single unit sigmoid activated layer. "multiClass" will create layer with units corresponding to number of output classes with softmax activation.}
+
+\item{iterations}{integer. This indicates number of iteratios or epochs in backpropagtion .The default value is 500.}
+
+\item{eta}{numeric.Hyperparameter,sets the Learning rate for backpropagation. Eta determines the convergence ability and speed of convergence.}
+
+\item{seed}{numeric. Set seed with this parameter. Incase of sin activation sometimes changing seed can yeild better results. Default is 2}
+
+\item{gradientClip}{numeric. Hyperparameter numeric value which limits gradient size for weight update operation in backpropagation. Default is 0.8 . It can take any postive value.}
+
+\item{regularisePar}{numeric. L2 Regularisation Parameter .}
+
+\item{optimiser}{one of "gradientDescent","momentum","rmsProp","adam". Default value "adam"}
+
+\item{parMomentum}{numeric. Applicable for optimiser "mometum" and "adam"}
+
+\item{inputSizeImpact}{numeric. Adjusts the gradient size by factor of percentage of rows in input. For very small data set setting this to 0 could yeild faster result. Default is 1.}
+
+\item{parRmsPropZeroAdjust}{numeric. Applicable for optimiser "rmsProp" and "adam"}
+
+\item{parRmsProp}{numeric.Applicable for optimiser "rmsProp" and "adam"}
+
+\item{treeLeaves}{vector.Optional , leaves numbers from externally trained tree model can be supplied here. If supplied then model will not build a explicit tree and just fit a neural network to mentioned leaves.}
+
+\item{treeMinSplitPercent}{numeric. This parameter controls depth of tree setting min split count for leaf subdivision as percentage of observations. Final minimum split will be chosen as max of count calculted with treeMinSplitPercent and treeMinSplitCount. Default 0.3. Range 0 to 1.}
+
+\item{treeMinSplitCount}{numeric. This parameter controls depth of tree setting min split count.Final minimum split will be chosen as max of count calculted with treeMinSplitPercent and treeMinSplitCount. Default 30}
+
+\item{treeCp}{complexity parameter. \code{\link{rpart.control}}}
+
+\item{errorCover}{Ratio. Deault is 0.2 i.e all models within 20% error of best model will be selected.}
+
+\item{treeAugment}{logical. If True fits deeptree and if False fits deepnet. Default is T}
+
+\item{printItrSize}{numeric. Number of iterations after which progress message should be shown. Default value 100 and for iterations below 100 atleast 5 messages will be seen}
+
+\item{showProgress}{logical. True will show progress and F will not show progress}
+
+\item{stopError}{Numeric. Rmse at which iterations can be stopped. Default is 0.01, can be set as NA in case all iterations needs to run.}
+
+\item{miniBatchSize}{integer. Set the mini batch size for mini batch gradient}
+
+\item{useBatchProgress}{logical. Applicable for miniBatch , setting T will use show rmse in Batch and F will show error on full dataset. For large dataset set T}
 }
 \value{
 
 }
 \description{
-Title
+Build or train bagged deeptree or deepnet of multiple architecture.Based on error choice either select best model or average multiple model with random variable cut,data cut and architechture
 }
 \examples{
+\dontrun{
 
+mdeepf<-deepforest(x,y,
+                  networkCount=3,
+                  layerChoice=c(2:3),
+                  unitsChoice=c(4:10),
+                  cutVarSizePercent=0.6,
+                  cutDataSizePercent=0.6,
+                  activation = 'relu',
+                  reluLeak=0.01,
+                  modelType ='regress',
+                  iterations = 500,
+                  eta = 10 ^-2,
+                  seed=2,
+                  gradientClip=0.8,
+                  regularisePar=0,
+                  optimiser="adam",
+                  parMomentum=0.9,
+                  inputSizeImpact=1,
+                  parRmsPropZeroAdjust=10^-8,
+                  parRmsProp=0.9999,
+                  treeLeaves=NA,
+                  treeMinSplitPercent=0.3,
+                  treeMinSplitCount=100,
+                  treeCp=0.01 ,
+                  errorCover=0.2,
+                  treeAugment=T,
+                  printItrSize=100,
+                  showProgress=T,
+                  stopError=0.01,
+                  miniBatchSize=64,
+                  useBatchProgress=T)
+}
 }

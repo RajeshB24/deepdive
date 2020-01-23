@@ -1,6 +1,6 @@
 
 #' @title Build and train an Artificial Neural Network of any size
-#' @description Build and train Artifical Neural Network of any depth in a single line code. Choose the hyperparameters to improve the accuracy or generalisation of model.This is built by using AndrewNg Deep learning course as reference.
+#' @description Build and train Artifical Neural Network of any depth in a single line code. Choose the hyperparameters to improve the accuracy or generalisation of model.
 #' @param x  a data frame with input variables
 #' @param y  a data frame with ouptut variable
 #' @param hiddenLayerUnits a numeric vector, length of vector indicates number of hidden layers and each element in vector indicates corresponding hidden units Eg: c(6,4) for two layers, one with 6 hiiden units and other with 4 hidden units. Note: Output layer is automatically created.
@@ -17,6 +17,13 @@
 #' @param inputSizeImpact numeric. Adjusts the gradient size by factor of percentage of rows in input. For very small data set setting this to 0 could yeild faster result. Default is 1.
 #' @param parRmsPropZeroAdjust numeric. Applicable for optimiser "rmsProp" and "adam"
 #' @param parRmsProp numeric.Applicable for optimiser "rmsProp" and "adam"
+#' @param printItrSize numeric. Number of iterations after which progress message should be shown. Default value 100 and for iterations below 100 atleast 5 messages will be seen
+#' @param showProgress logical. True will show progress and F will not show progress
+#' @param stopError  Numeric. Rmse at which iterations can be stopped. Default is 0.01, can be set as NA in case all iterations needs to run.
+#' @param miniBatchSize integer. Set the mini batch size for mini batch gradient
+#' @param useBatchProgress logical. Applicable for miniBatch , setting T will use show rmse in Batch and F will show error on full dataset. For large dataset set T
+#' @param ignoreNAerror logical. Set T if iteration needs to be stopped when predictions become NA
+#'
 #'
 #' @return returns model object which can be passed into \code{\link{predict.deepnet}}
 #' @export
@@ -25,8 +32,8 @@
 #' \dontrun{
 #' x <- data.frame(a = runif(1000)*100,
 #' b = runif(1000)*200,
-#' c = runif(1000)*100,
-#' d = runif(1000)*200)
+#' c = runif(1000)*100
+#' )
 #' y<- data.frame(y=20*x$a +30* x$b+10*x$c +10)
 #'
 #' #train

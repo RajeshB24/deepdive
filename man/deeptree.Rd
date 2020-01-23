@@ -76,10 +76,55 @@ deeptree(
 \item{treeCp}{complexity parameter. \code{\link{rpart.control}}}
 
 \item{stackPred}{vector.Predictions from buildnet or other models can be supplied here. If for certain leaf stackPrep accuracy is better then stackpred predictions will be chosen.}
+
+\item{printItrSize}{numeric. Number of iterations after which progress message should be shown. Default value 100 and for iterations below 100 atleast 5 messages will be seen}
+
+\item{showProgress}{logical. True will show progress and F will not show progress}
+
+\item{stopError}{Numeric. Rmse at which iterations can be stopped. Default is 0.01, can be set as NA in case all iterations needs to run.}
+
+\item{miniBatchSize}{integer. Set the mini batch size for mini batch gradient}
+
+\item{useBatchProgress}{logical. Applicable for miniBatch , setting T will use show rmse in Batch and F will show error on full dataset. For large dataset set T}
+
+\item{ignoreNAerror}{logical. Set T if iteration needs to be stopped when predictions become NA}
 }
 \value{
 
 }
 \description{
 This models divides the input space by fitting a tree followed by artificial neural network to each of leaf. Decision tree model is built using rpart package and neural network using deepdive.Feature of stacking predictions from other models is also made available.
+}
+\examples{
+\dontrun{
+x <- data.frame(a = runif(1000)*100,
+b = runif(1000)*200,
+c = runif(1000)*100)
+y<- data.frame(y=20*x$a +30* x$b+10*x$c +10)
+
+deepTreeMod<-deeptree(x,
+y,
+hiddenLayerUnits=c(4,4),
+activation = 'relu',
+reluLeak=0.01,
+modelType ='regress',
+iterations = 1000,
+eta = 0.4,
+seed=2,
+gradientClip=0.8,
+regularisePar=0,
+optimiser="adam",
+parMomentum=0.9,
+inputSizeImpact=1,
+parRmsPropZeroAdjust=10^-8,
+parRmsProp=0.9999,
+treeLeaves=NA,
+treeMinSplitPercent=0.4,
+treeMinSplitCount=100,
+stackPred =NA,
+stopError=4,
+miniBatchSize=64,
+useBatchProgress=T,
+ignoreNAerror=F)
+}
 }

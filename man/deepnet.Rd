@@ -61,19 +61,31 @@ deepnet(
 \item{parRmsPropZeroAdjust}{numeric. Applicable for optimiser "rmsProp" and "adam"}
 
 \item{parRmsProp}{numeric.Applicable for optimiser "rmsProp" and "adam"}
+
+\item{printItrSize}{numeric. Number of iterations after which progress message should be shown. Default value 100 and for iterations below 100 atleast 5 messages will be seen}
+
+\item{showProgress}{logical. True will show progress and F will not show progress}
+
+\item{stopError}{Numeric. Rmse at which iterations can be stopped. Default is 0.01, can be set as NA in case all iterations needs to run.}
+
+\item{miniBatchSize}{integer. Set the mini batch size for mini batch gradient}
+
+\item{useBatchProgress}{logical. Applicable for miniBatch , setting T will use show rmse in Batch and F will show error on full dataset. For large dataset set T}
+
+\item{ignoreNAerror}{logical. Set T if iteration needs to be stopped when predictions become NA}
 }
 \value{
 returns model object which can be passed into \code{\link{predict.deepnet}}
 }
 \description{
-Build and train Artifical Neural Network of any depth in a single line code. Choose the hyperparameters to improve the accuracy or generalisation of model.This is built by using AndrewNg Deep learning course as reference.
+Build and train Artifical Neural Network of any depth in a single line code. Choose the hyperparameters to improve the accuracy or generalisation of model.
 }
 \examples{
 \dontrun{
 x <- data.frame(a = runif(1000)*100,
 b = runif(1000)*200,
-c = runif(1000)*100,
-d = runif(1000)*200)
+c = runif(1000)*100
+)
 y<- data.frame(y=20*x$a +30* x$b+10*x$c +10)
 
 #train
