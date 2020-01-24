@@ -11,6 +11,7 @@
 #' @export predict.deepforest
 #' @importFrom  data.table rbindlist
 #' @import rpart
+#' @importFrom treeClust rpart.predict.leaves
 #' @examples
 predict.deepforest<-function(object,
                              newData){

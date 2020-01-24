@@ -10,7 +10,9 @@
 #'
 #' @return
 #' @export
-#'
+#' @importFrom  data.table rbindlist
+#' @import rpart
+#' @importFrom treeClust rpart.predict.leaves
 #' @examples
 varaiableImportance<-function(model,x,y,showPlot=T,seed=2){
 
