@@ -15,3 +15,6 @@ multiLayerIntialiser(layerChoice, unitsChoice, networkCount, seed)
 \description{
 Multi Layer Initialisation for deepforest
 }
+\examples{
+
+}

@@ -83,5 +83,6 @@ if(object[["preBuiltTree"]]){
   ypred<-ypred[order(ypred$rowname),]
   names(ypred)[1]<-c('pred_y')
 
-  return(data.frame(ypred=ypred[,'pred_y']))
+
+  return(data.frame(pred_y=ypred[,'pred_y']))
 }

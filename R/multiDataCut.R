@@ -20,7 +20,8 @@ multiDataCut<-function(x,y,networkCount,cutDataSizePercent,cutVarSizePercent,see
   cutSize=round(cutDataSizePercent*inputLen,0)
 
   cutIndex<-lapply(1:networkCount,function(s){
-    set.seed(s)
+    set.seed(s*seed)
+
     sample(1:inputLen,cutSize)
 
   })

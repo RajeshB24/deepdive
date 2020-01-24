@@ -1,7 +1,6 @@
 
 
 
-
 #' Predict Function for DeepForest
 #'
 #' @param object
@@ -16,9 +15,9 @@
 predict.deepforest<-function(object,
                              newData){
 
-  varCut=object[[1]]
-  modelGroup=object[[2]]
-  treeAugment=object[[3]]
+  varCut=object$varcut
+  modelGroup=object$chosenModels
+  treeAugment=object$treeAugment
 
 
 
@@ -29,9 +28,9 @@ predict.deepforest<-function(object,
                        as.matrix(predict.deepnet(modelGroup[[o]],newData[,varCut[[o]]]))}else{
 
                          xFit<-newData[,varCut[[o]]]
-                         AugmentedModel=modelGroup[[o]]
 
-                         augmentPred<- predict.deeptree(AugmentedModel$modelGrpNet,
+
+                         augmentPred<- predict.deeptree(modelGroup[[o]],
                            newData =xFit)
 
                         as.matrix(augmentPred)
@@ -51,20 +50,4 @@ names(predDf)<-paste0('pred_',names(y))
   return(predDf)
 }
 
-
-#average output : ignore Dead Networks
-#weighted average : based denormalised Cost
-#master learner
-
-#ErrorCoverPercent : percent of error cover over best neuron.
-#That is choose only  the best neuron or provide error cover to choose networks perfoming close to best. Higher error cover for better regularisation.
-
-#Stoping rule on iteration : Stop on threshold ,stop on NA
-
-#If both var percent and dat percent are 1 then fit tree only ones
-
-
-
-
-#Boosted Model
 

@@ -1,5 +1,8 @@
 
-
+layerChoice=3
+unitsChoice=4
+networkCount=2
+seed=2
 #' @title Build or train bagged deeptree or deepnet of multiple architecture
 #' @description Build or train bagged deeptree or deepnet of multiple architecture.Based on error choice either select best model or average multiple model with random variable cut,data cut and architechture
 #' @param x a data frame with input variables
@@ -111,6 +114,8 @@ deepforest<-function(x,y,
                                        unitsChoice,
                                        networkCount,seed)
 
+
+  activationList<- multiActivationList(multiLayerList,activation,seed)
   dataCut<-multiDataCut(x,y,networkCount,cutDataSizePercent,cutVarSizePercent,seed)
 
   xCut=dataCut$xCut
@@ -119,7 +124,7 @@ deepforest<-function(x,y,
 
 
 
-  multiSeed<-c(1:networkCount)
+  multiSeed<-seed*c(1:networkCount)
 
 
   modelForest<-lapply(1:networkCount, function(nc){
@@ -134,7 +139,7 @@ deepforest<-function(x,y,
                  deepnet(xCut[[nc]][,idx],
                          yCut[[nc]],
                          hiddenLayerUnits=multiLayerList[[nc]],
-                         activation ,
+                         activationList[[nc]] ,
                          reluLeak,
                          modelType ,
                          iterations ,
@@ -162,10 +167,10 @@ deepforest<-function(x,y,
                  })>1)
 
 
-                 modelGrpNet<-      deeptree(     xCut[[nc]][,idx],
+                  deeptree(     xCut[[nc]][,idx],
                                          yCut[[nc]],
                                          hiddenLayerUnits=multiLayerList[[nc]],
-                                         activation ,
+                                         activationList[[nc]] ,
                                          reluLeak,
                                          modelType,
                                          iterations,
@@ -191,29 +196,15 @@ deepforest<-function(x,y,
                                          ignoreNAerror=T)
 
 
-
-
-                 list(modelGrpNet=modelGrpNet)
                } })
 
 
 
 
 
-  if(treeAugment==F){
-
-    fitPerf<-unlist(lapply(1:length(modelForest), function(mf){
-      sqrt(mean((modelForest[[mf]]$fitted$pred_y-yCut[[mf]]$y)^2))/mean(abs(yCut[[mf]]$y))
-    }))
-    }else{
-
       fitPerf<-unlist(lapply(1:length(modelForest), function(mf){
 
-        AugmentedModel<-modelForest[[mf]]
-
-
-
-
+        fitModel<-modelForest[[mf]]
 
 
         xFit<-xCut[[mf]][,varCut[[mf]]]
@@ -221,16 +212,18 @@ deepforest<-function(x,y,
         yFit<-yCut[[mf]]
         row.names(yFit)<-1:nrow(yFit)
 
-
-        augmentPred<- predict.deeptree(AugmentedModel$modelGrpNet,
+        if(treeAugment==T){
+        augmentPred<- predict.deeptree(fitModel,
                                        newData=xFit)
 
 
-        sqrt(mean((augmentPred$ypred-yFit$y)^2))/mean(abs(yFit$y))
+        sqrt(mean((augmentPred$pred_y-yFit$y)^2))/mean(abs(yFit$y))}else{
+          netPred<- predict.deepnet(fitModel,
+                                         newData=xFit)
+          sqrt(mean((netPred$pred_y-yFit$y)^2))/mean(abs(yFit$y))
+        }
+
       }))
-
-    }
-
 
 
 
@@ -240,7 +233,9 @@ deepforest<-function(x,y,
   chosenIndex<-which(!is.na(fitPerf)& fitPerf<=errorCoverFit)
   chosenModels<- modelForest[chosenIndex]
 
-  deepforestmod<-list(varCut[chosenIndex],chosenModels,treeAugment)
+  deepforestmod<-list(varcut=varCut[chosenIndex],
+                      chosenModels=chosenModels,
+                      treeAugment=treeAugment)
   class(deepforestmod)<-'deepforest'
 
   return(deepforestmod)
