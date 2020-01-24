@@ -1,8 +1,5 @@
 
-layerChoice=3
-unitsChoice=4
-networkCount=2
-seed=2
+
 #' @title Build or train bagged deeptree or deepnet of multiple architecture
 #' @description Build or train bagged deeptree or deepnet of multiple architecture.Based on error choice either select best model or average multiple model with random variable cut,data cut and architechture
 #' @param x a data frame with input variables
@@ -12,7 +9,7 @@ seed=2
 #' @param unitsChoice  vector , number of units choice
 #' @param cutVarSizePercent ratio, percentage of variable to for each network
 #' @param cutDataSizePercent ratio, percentage of data to for each network
-#' @param activation one of "sigmoid","relu","sin","cos","none". The default is "sigmoid". Choose a activation per hidden layer
+#' @param activation choose from "sigmoid","relu","sin","cos","none".Activations will be randomly chosen from chosen. Default is relu and sin
 #' @param reluLeak  numeric. Applicable when activation is "relu". Specify value between 0 any number close to zero below 1. Eg: 0.01,0.001 etc
 #' @param modelType  one of "regress","binary","multiClass". "regress" for regression will create a linear single unit output layer. "binary" will create a single unit sigmoid activated layer. "multiClass" will create layer with units corresponding to number of output classes with softmax activation.
 #' @param iterations integer. This indicates number of iteratios or epochs in backpropagtion .The default value is 500.

@@ -53,7 +53,7 @@ deepforest(
 
 \item{cutDataSizePercent}{ratio, percentage of data to for each network}
 
-\item{activation}{one of "sigmoid","relu","sin","cos","none". The default is "sigmoid". Choose a activation per hidden layer}
+\item{activation}{choose from "sigmoid","relu","sin","cos","none".Activations will be randomly chosen from chosen. Default is relu and sin}
 
 \item{reluLeak}{numeric. Applicable when activation is "relu". Specify value between 0 any number close to zero below 1. Eg: 0.01,0.001 etc}
 

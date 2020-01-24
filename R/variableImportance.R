@@ -1,44 +1,44 @@
-#seed=2
-#model<-modelnet
-#Use shuffle distortion to rmse impact
 
 
-shuffler<-function(inputdf,colname,model,modelError,seed){
-  set.seed(seed)
-  shuffleDf<-inputdf
-  shuffleDf[,colname]<- sample(inputdf[,colname],nrow(inputdf))
-
-  shufflePred<- predict(model,shuffleDf)
-
-  if(model$modelType=="regress"){
-
-    shuffleError<-sqrt(mean((as.matrix(y-shufflePred)^2)))
-
-  }
-
-  errorDiff<-shuffleError-modelError
-  return(errorDiff)
-
-}
-
+#' @title Varaible importance for models in this library
+#'
+#' @param model Model object
+#' @param x    a data frame with input variables
+#' @param y    a data frame with ouptut variable
+#' @param showPlot logical. True will show importance plot. Default True
+#' @param seed Set seed with this parameter. Incase of sin activation sometimes changing seed can yeild better results. Default is 2
+#'
+#' @return
+#' @export
+#'
+#' @examples
 varaiableImportance<-function(model,x,y,showPlot=T,seed=2){
 
   set.seed(seed)
 inVars<-colnames(x)
 
 
-modelPred<- predict(model,x)
+if(model$modelType=="multiClass"){
 
-if(model$modelType=="regress"){
-
-modelError<-sqrt(mean((as.matrix(y-modelPred)^2)))
+  y<-dummy_cols(y)[-1]
 
 }
+
+modelPred<- predict(model,x)
+
+if(model$modelType=="multiClass"){
+names(modelPred)<-stringr::str_remove(names(modelPred),"pred_")
+
+modelPred<-modelPred[,names(y)]
+}
+modelError<-sqrt(mean((as.matrix(y-modelPred)^2)))
+
+
 
 #variable Shuffle
 
 errorDiff<-unlist(lapply(inVars, function(c){
-    shuffler(x,c,model,modelError,seed)
+    shuffler(x,c,y,model,modelError,seed)
 
   }))
 
@@ -62,6 +62,7 @@ plot_importance<-barplot(ImportanceDf$errorDiff,
 return(ImportanceDf)
 
 }
+
 
 
 
