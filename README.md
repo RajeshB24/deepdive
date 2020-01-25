@@ -51,7 +51,7 @@ library(deepdive)
  )
  y<- data.frame(y=20*x$a +30* x$b+10*x$c +10)
 
- #Training increase iiteration for convergence
+ #Training increase iterations for convergence
  modelnet<-deepnet(x,y,c(2,2),
  activation = c('relu',"sin"),
  reluLeak = 0.001,
@@ -59,11 +59,11 @@ library(deepdive)
  iterations =20,
  eta=0.8,
  optimiser="adam")
-#> [1] "iteration 3: 3706.09511386989"
-#> [1] "iteration 7: 2826.842838227"
-#> [1] "iteration 11: 1996.86526920125"
-#> [1] "iteration 15: 1923.81685967935"
-#> [1] "iteration 20: 2083.17688776852"
+#> [1] "iteration 3: 3449.60322722512"
+#> [1] "iteration 7: 2682.75769349155"
+#> [1] "iteration 11: 2028.26670205351"
+#> [1] "iteration 15: 2026.38908602836"
+#> [1] "iteration 20: 2131.29907902598"
 
  #predict
 # predDeepNet<-predict.deepnet(modelnet,newData=x)

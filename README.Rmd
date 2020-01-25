@@ -48,7 +48,7 @@ library(deepdive)
  )
  y<- data.frame(y=20*x$a +30* x$b+10*x$c +10)
 
- #Training increase iiteration for convergence
+ #Training increase iterations for convergence
  modelnet<-deepnet(x,y,c(2,2),
  activation = c('relu',"sin"),
  reluLeak = 0.001,
