@@ -5,6 +5,12 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 3 note
 
-* This is a new release.
+All 3 notes are harmless and can be ignored.
+
+*New submission
+
+*Files 'README.md' or 'NEWS.md' cannot be checked without 'pandoc' being installed.
+
+* Dropping empty section in Rd files
