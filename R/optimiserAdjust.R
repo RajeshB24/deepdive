@@ -14,7 +14,7 @@
 #' @param previousBiasAdapt
 #'
 #' @return
-#' @export
+#' @noRd
 #'
 #' @examples
 optimiserAdjust<-function(i,dw,db,optimiser,parMomentum,parRmsProp,parRmsPropZeroAdjust,

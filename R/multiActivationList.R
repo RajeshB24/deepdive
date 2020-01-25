@@ -1,14 +1,10 @@
 
 
 #' Activation List for Deepforest
-#'
-#' @param multiLayerList
-#' @param activation
-#'
+
 #' @return
-#' @export
-#'
-#' @examples
+#' @noRd
+
 multiActivationList<-function(multiLayerList,activation,seed){
 
 layerLengths<-sapply(multiLayerList , function(l){

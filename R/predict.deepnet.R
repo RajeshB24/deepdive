@@ -2,16 +2,20 @@
 
 #' Predict Function for Deepnet
 #'
-#' @param object
-#' @param newData
+#' @param object deepnet model object
+#' @param newData pass dataframe for prediction
+#' @param ... further arguments passed to or from other methods.
 #'
 #' @return
 #' @export predict.deepnet
 #' @export
+#' @importFrom graphics barplot
+#' @importFrom stats formula predict runif
 #' @examples
 predict.deepnet<-function(object,
-                          newData){
+                          newData,...){
 
+  if (!inherits(object, "deepnet")) stop("Not a legitimate \"deepnet\" object")
   newData<-data.frame(newData)
   weightMatrix=object[["weightMatrix"]]
   activation=object[["activation"]]
@@ -72,7 +76,7 @@ predict.deepnet<-function(object,
 
   outColMin<-object[['outColMin']]
 
-  for(i in 1:ncol(y)){
+  for(i in 1:ncol(ypred)){
     ypred[,i]<-ypred[,i]*(outColMax[i]-outColMin[i])+outColMin[i]
 
     ypred[,i]= ypred[,i]

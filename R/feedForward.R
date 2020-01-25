@@ -1,18 +1,10 @@
 
 
 #' FeedForward for deepnet
-#'
-#' @param xBiased
-#' @param weightMatrix
-#' @param activation
-#' @param reluLeak
-#' @param modelType
-#' @param baisUnits
-#'
+
 #' @return
-#' @export
-#'
-#' @examples
+#' @noRd
+
 feedForward <- function(xBiased, weightMatrix, activation,reluLeak, modelType,baisUnits) {
 
 

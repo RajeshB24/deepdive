@@ -8,7 +8,7 @@
 #' @param activation
 #'
 #' @return
-#' @export
+#' @noRd
 #'
 #' @examples
 weightInitialiser <- function(i,interVariableCount,interOutCount,seed,activation) {

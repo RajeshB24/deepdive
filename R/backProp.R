@@ -1,31 +1,10 @@
 
 #' BackProp for deepnet
-#'
-#' @param x
-#' @param y
-#' @param weightMatrix
-#' @param activation
-#' @param reluLeak
-#' @param modelType
-#' @param eta
-#' @param gradientClip
-#' @param baisUnits
-#' @param regularisePar
-#' @param itr
-#' @param optimiser
-#' @param parMomentum
-#' @param parRmsProp
-#' @param parRmsPropZeroAdjust
-#' @param previousWeightUpdate
-#' @param previousBiasUpdate
-#' @param previousWeightAdapt
-#' @param previousBiasAdapt
-#' @param inputSizeImpact
-#'
+
 #' @return
-#' @export
 #'
-#' @examples
+#' @noRd
+
 backProp <- function(x,y,
                      weightMatrix,
                      activation,reluLeak,

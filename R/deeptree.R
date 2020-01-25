@@ -32,13 +32,12 @@
 #' @param useBatchProgress logical. Applicable for miniBatch , setting T will use show rmse in Batch and F will show error on full dataset. For large dataset set T
 #' @param ignoreNAerror logical. Set T if iteration needs to be stopped when predictions become NA
 #'
-#'
-#'
-#'
 #' @return
 #' @export
 #' @import rpart
 #' @import data.table
+#' @importFrom graphics barplot
+#' @importFrom stats formula predict runif
 #' @examples
 #' \dontrun{
 #' x <- data.frame(a = runif(1000)*100,

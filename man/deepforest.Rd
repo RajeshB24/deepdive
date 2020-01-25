@@ -87,7 +87,7 @@ deepforest(
 
 \item{treeCp}{complexity parameter. \code{\link{rpart.control}}}
 
-\item{errorCover}{Ratio. Deault is 0.2 i.e all models within 20% error of best model will be selected.}
+\item{errorCover}{Ratio. Deault is 0.2 i.e all models within 20 percent error of best model will be selected.}
 
 \item{treeAugment}{logical. If True fits deeptree and if False fits deepnet. Default is T}
 
@@ -109,7 +109,6 @@ Build or train bagged deeptree or deepnet of multiple architecture.Based on erro
 }
 \examples{
 \dontrun{
-
 mdeepf<-deepforest(x,y,
                   networkCount=3,
                   layerChoice=c(2:3),

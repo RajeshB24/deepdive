@@ -8,7 +8,7 @@
 #' @param seed
 #'
 #' @return
-#' @export
+#' @noRd
 #'
 #' @examples
 #'

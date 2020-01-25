@@ -22,7 +22,7 @@
 #'
 #' @return
 #'
-#' @export
+#' @noRd
 #' @examples
 weightUpdate <- function(i,
                          AllWeights,

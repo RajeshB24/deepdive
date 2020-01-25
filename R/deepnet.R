@@ -28,6 +28,8 @@
 #' @return returns model object which can be passed into \code{\link{predict.deepnet}}
 #' @export
 #'@importFrom fastDummies dummy_cols
+#'@importFrom graphics barplot
+#'@importFrom stats formula predict runif
 #' @examples
 #' \dontrun{
 #' x <- data.frame(a = runif(1000)*100,

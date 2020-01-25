@@ -2,10 +2,12 @@
 
 #' Predict Function for Deeptree
 #'
-#' @param object
-#' @param newData
-#' @param treeLeaves
-#' @param stackPred
+#' @param object deeptree model object
+#' @param newData pass dataframe for prediction
+#' @param treeLeaves  Pass vector with tree leaves if fit outside deeptree. default NA.
+#' @param stackPred   Pass stackPred of prediction data if it was passed in deeptree
+#' @param ... further arguments passed to or from other methods.
+#'
 #'
 #' @return
 #' @export
@@ -13,11 +15,15 @@
 #' @importFrom  data.table rbindlist
 #' @import rpart
 #' @importFrom treeClust rpart.predict.leaves
+#' @importFrom graphics barplot
+#' @importFrom stats formula predict runif
+#'
 #' @examples
-predict.deeptree<-function(object,newData,treeLeaves=NA,stackPred=NA){
+predict.deeptree<-function(object,newData,treeLeaves=NA,stackPred=NA,...){
 
 
 
+  if (!inherits(object, "deeptree")) stop("Not a legitimate \"deeptree\" object")
 
   useStackPred=object$useStackPred
 
@@ -28,7 +34,7 @@ predict.deeptree<-function(object,newData,treeLeaves=NA,stackPred=NA){
   if(sum(useStackPred)>0){
     if(is.na(sum(stackPred))){
       print('stackPred is required')
-      break;
+
     }
   }
   treeLeavesGroup<-object[['treeLeavesGroup']]
@@ -39,7 +45,7 @@ if(object[["preBuiltTree"]]){
 
   if(is.na(treeLeaves)){
     print("missing treeLeaves attribute")
-    break();
+
 
   }}else{
 

@@ -1,6 +1,6 @@
 
 
-#' @title Varaible importance for models in this library
+#' @title Variable importance for models in this library
 #'
 #' @param model Model object
 #' @param x    a data frame with input variables
@@ -14,7 +14,7 @@
 #' @import rpart
 #' @importFrom treeClust rpart.predict.leaves
 #' @examples
-varaiableImportance<-function(model,x,y,showPlot=T,seed=2){
+variableImportance<-function(model,x,y,showPlot=T,seed=2){
 
   set.seed(seed)
 inVars<-colnames(x)

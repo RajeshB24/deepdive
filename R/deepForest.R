@@ -1,5 +1,6 @@
 
 
+
 #' @title Build or train bagged deeptree or deepnet of multiple architecture
 #' @description Build or train bagged deeptree or deepnet of multiple architecture.Based on error choice either select best model or average multiple model with random variable cut,data cut and architechture
 #' @param x a data frame with input variables
@@ -26,22 +27,22 @@
 #' @param treeMinSplitPercent numeric. This parameter controls depth of tree setting min split count for leaf subdivision as percentage of observations. Final minimum split will be chosen as max of count calculted with treeMinSplitPercent and treeMinSplitCount. Default 0.3. Range 0 to 1.
 #' @param treeMinSplitCount numeric. This parameter controls depth of tree setting min split count.Final minimum split will be chosen as max of count calculted with treeMinSplitPercent and treeMinSplitCount. Default 30
 #' @param treeCp complexity parameter. \code{\link{rpart.control}}
-#' @param errorCover Ratio. Deault is 0.2 i.e all models within 20% error of best model will be selected.
+#' @param errorCover Ratio. Deault is 0.2 i.e all models within 20 percent error of best model will be selected.
 #' @param treeAugment logical. If True fits deeptree and if False fits deepnet. Default is T
 #' @param printItrSize numeric. Number of iterations after which progress message should be shown. Default value 100 and for iterations below 100 atleast 5 messages will be seen
 #' @param showProgress logical. True will show progress and F will not show progress
 #' @param stopError Numeric. Rmse at which iterations can be stopped. Default is 0.01, can be set as NA in case all iterations needs to run.
 #' @param miniBatchSize integer. Set the mini batch size for mini batch gradient
 #' @param useBatchProgress logical. Applicable for miniBatch , setting T will use show rmse in Batch and F will show error on full dataset. For large dataset set T
-#'
 #' @return
 #' @export
 #' @import rpart
 #' @import data.table
 #' @importFrom treeClust rpart.predict.leaves
+#' @importFrom graphics barplot
+#' @importFrom stats formula predict runif
 #' @examples
 #' \dontrun{
-#'
 #'mdeepf<-deepforest(x,y,
 #'                   networkCount=3,
 #'                   layerChoice=c(2:3),

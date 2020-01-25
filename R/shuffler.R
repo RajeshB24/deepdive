@@ -9,7 +9,7 @@
 #' @param seed
 #'
 #' @return
-#' @export
+#' @noRd
 #'
 #' @examples
 shuffler<-function(x,colname,y,model,modelError,seed){
