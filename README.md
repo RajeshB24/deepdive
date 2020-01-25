@@ -45,27 +45,31 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(deepdive)
-# basic example code
- x <- data.frame(a = runif(100)*100,
- b = runif(100))
- y<- data.frame(y=20*x$a +30* x$b+10)
+ x <- data.frame(a = runif(1000)*100,
+ b = runif(1000)*200,
+ c = runif(1000)*100
+ )
+ y<- data.frame(y=20*x$a +30* x$b+10*x$c +10)
 
- #train (increase iteration  to improve accuracy)
- modelnet<-deepnet(x,y,c(1),activation = "relu",
+ #Training increase iiteration for convergence
+ modelnet<-deepnet(x,y,c(2,2),
+ activation = c('relu',"sin"),
  reluLeak = 0.001,
  modelType = "regress",
- iterations =5,
- eta=0.1,
+ iterations =20,
+ eta=0.8,
  optimiser="adam")
-#> [1] "iteration 1: 12.7222587425007"
-#> [1] "iteration 2: 12.2207170978186"
-#> [1] "iteration 3: 11.6763382294951"
-#> [1] "iteration 4: 11.1270441230926"
-#> [1] "iteration 5: 10.6030121196171"
- 
-  #predict
- # predDeepNet<-predict.deepnet(modelnet,newData=x)
+#> [1] "iteration 3: 3706.09511386989"
+#> [1] "iteration 7: 2826.842838227"
+#> [1] "iteration 11: 1996.86526920125"
+#> [1] "iteration 15: 1923.81685967935"
+#> [1] "iteration 20: 2083.17688776852"
+
+ #predict
+# predDeepNet<-predict.deepnet(modelnet,newData=x)
 
  #evaluate
- #rmse=sqrt(mean((predDeepNet$pred_y-y$y)^2))
+#sqrt(mean((predDeepNet$pred_y-y$y)^2))
+
+ 
 ```
