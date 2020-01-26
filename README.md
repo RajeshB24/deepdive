@@ -1,7 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# deepdive
+\#
+
+<center>
+
+<img src="deepdiveLogo.png">
+
+</center>
 
 **deepnet-\>deeptree-\>deepforest**
 
@@ -59,11 +65,11 @@ library(deepdive)
  iterations =20,
  eta=0.8,
  optimiser="adam")
-#> [1] "iteration 3: 3449.60322722512"
-#> [1] "iteration 7: 2682.75769349155"
-#> [1] "iteration 11: 2028.26670205351"
-#> [1] "iteration 15: 2026.38908602836"
-#> [1] "iteration 20: 2131.29907902598"
+#> [1] "iteration 3: 3667.53706230597"
+#> [1] "iteration 7: 2778.48688619317"
+#> [1] "iteration 11: 2005.33496803035"
+#> [1] "iteration 15: 2028.77946962361"
+#> [1] "iteration 20: 2151.99187142834"
 
  #predict
 # predDeepNet<-predict.deepnet(modelnet,newData=x)
