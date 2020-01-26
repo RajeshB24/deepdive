@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# <center><img src="deepdiveLogo.png"> </center>
+<center><img src="deepdiveLogo.png"> </center>
 
 
 **deepnet->deeptree->deepforest**
