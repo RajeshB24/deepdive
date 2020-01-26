@@ -56,7 +56,7 @@
 #' }
 deepnet<- function(x,
                     y,
-                    hiddenLayerUnits,
+                    hiddenLayerUnits=c(2,2),
                     activation =c('sigmoid',"sigmoid"),
                     reluLeak=0,
                     modelType = c('regress'),
@@ -146,6 +146,11 @@ deepnet<- function(x,
   })
 
 
+
+
+
+
+
  # y<-as.matrix(y)
 
 #  x<-as.matrix(cbind(const = rep(1, nrow(x)), x))
@@ -155,8 +160,8 @@ deepnet<- function(x,
 
 
 
-  AllWeights<-list(weightMatrix=weightMatrix,
-                   baisUnits=baisUnits)
+AllWeights<-list(weightMatrix=weightMatrix,
+                 baisUnits=baisUnits)
 
 
 previousWeightUpdate<-  lapply(c(1:length(interVariableCount)),
