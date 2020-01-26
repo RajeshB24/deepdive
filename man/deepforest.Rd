@@ -102,7 +102,7 @@ deepforest(
 \item{useBatchProgress}{logical. Applicable for miniBatch , setting T will use show rmse in Batch and F will show error on full dataset. For large dataset set T}
 }
 \value{
-
+returns model object which can be passed into \code{\link{predict.deepforest}}
 }
 \description{
 Build or train bagged deeptree or deepnet of multiple architecture.Based on error choice either select best model or average multiple model with random variable cut,data cut and architechture

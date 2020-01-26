@@ -5,7 +5,7 @@
 #' @param object deepforest model object
 #' @param newData pass dataframe for prediction
 #' @param ... further arguments passed to or from other methods.
-#' @return
+#' @return returns predictions vector or dataframe
 #' @export
 #' @export predict.deepforest
 #' @importFrom  data.table rbindlist
@@ -13,9 +13,7 @@
 #' @importFrom treeClust rpart.predict.leaves
 #' @importFrom graphics barplot
 #' @importFrom stats formula predict runif
-#' @examples
-#'
-#'
+
 predict.deepforest<-function(object,
                              newData,...){
 

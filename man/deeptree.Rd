@@ -90,7 +90,7 @@ deeptree(
 \item{ignoreNAerror}{logical. Set T if iteration needs to be stopped when predictions become NA}
 }
 \value{
-
+returns model object which can be passed into \code{\link{predict.deeptree}}
 }
 \description{
 This models divides the input space by fitting a tree followed by artificial neural network to each of leaf. Decision tree model is built using rpart package and neural network using deepdive.Feature of stacking predictions from other models is also made available.

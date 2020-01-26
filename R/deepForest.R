@@ -34,7 +34,7 @@
 #' @param stopError Numeric. Rmse at which iterations can be stopped. Default is 0.01, can be set as NA in case all iterations needs to run.
 #' @param miniBatchSize integer. Set the mini batch size for mini batch gradient
 #' @param useBatchProgress logical. Applicable for miniBatch , setting T will use show rmse in Batch and F will show error on full dataset. For large dataset set T
-#' @return
+#' @return returns model object which can be passed into \code{\link{predict.deepforest}}
 #' @export
 #' @import rpart
 #' @import data.table

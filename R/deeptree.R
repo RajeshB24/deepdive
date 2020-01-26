@@ -32,7 +32,7 @@
 #' @param useBatchProgress logical. Applicable for miniBatch , setting T will use show rmse in Batch and F will show error on full dataset. For large dataset set T
 #' @param ignoreNAerror logical. Set T if iteration needs to be stopped when predictions become NA
 #'
-#' @return
+#' @return returns model object which can be passed into \code{\link{predict.deeptree}}
 #' @export
 #' @import rpart
 #' @import data.table

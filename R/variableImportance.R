@@ -8,12 +8,12 @@
 #' @param showPlot logical. True will show importance plot. Default True
 #' @param seed Set seed with this parameter. Incase of sin activation sometimes changing seed can yeild better results. Default is 2
 #'
-#' @return
+#' @return returns variable importance data frame
 #' @export
 #' @importFrom  data.table rbindlist
 #' @import rpart
 #' @importFrom treeClust rpart.predict.leaves
-#' @examples
+
 variableImportance<-function(model,x,y,showPlot=T,seed=2){
 
   set.seed(seed)

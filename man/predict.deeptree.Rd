@@ -18,7 +18,7 @@
 \item{...}{further arguments passed to or from other methods.}
 }
 \value{
-
+returns predictions vector or dataframe
 }
 \description{
 Predict Function for Deeptree

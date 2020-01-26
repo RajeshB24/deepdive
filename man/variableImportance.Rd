@@ -18,7 +18,7 @@ variableImportance(model, x, y, showPlot = T, seed = 2)
 \item{seed}{Set seed with this parameter. Incase of sin activation sometimes changing seed can yeild better results. Default is 2}
 }
 \value{
-
+returns variable importance data frame
 }
 \description{
 Variable importance for models in this library

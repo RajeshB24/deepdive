@@ -6,12 +6,12 @@
 #' @param newData pass dataframe for prediction
 #' @param ... further arguments passed to or from other methods.
 #'
-#' @return
+#' @return returns predictions vector or dataframe
 #' @export predict.deepnet
 #' @export
 #' @importFrom graphics barplot
 #' @importFrom stats formula predict runif
-#' @examples
+
 predict.deepnet<-function(object,
                           newData,...){
 
