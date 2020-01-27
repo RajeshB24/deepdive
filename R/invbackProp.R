@@ -1,12 +1,13 @@
 
-
+1
 #' BackProp for deepnet
 
 #' @return
 #'
 #' @noRd
 
-backProp <- function(x,
+
+invbackProp <- function(x,
                      y,
                      weightMatrix,
                      activation,
@@ -14,7 +15,6 @@ backProp <- function(x,
                      modelType,
                      eta,
                      gradientClip,
-                     baisUnits,
                      regularisePar,
                      itr,
                      optimiser,
@@ -22,11 +22,10 @@ backProp <- function(x,
                      parRmsProp,
                      parRmsPropZeroAdjust,
                      previousWeightUpdate,
-                     previousBiasUpdate,
                      previousWeightAdapt,
-                     previousBiasAdapt,
                      inputSizeImpact) {
 
+  oldWeights=weightMatrix
   sizeImpact = min(1, 1 / (inputSizeImpact * nrow(x)))
   feedList <-invfeedForward(x, weightMatrix, activation, reluLeak, modelType)
 
@@ -35,56 +34,58 @@ backProp <- function(x,
 
   ypred = feedOut[[length(feedOut)]]
 
-
-
   for (i in length(weightMatrix):1) {
-    if (i == length(weightMatrix)) {
-      #Output layer weight updates
 
+    if (i == length(weightMatrix)) {
+
+      #Output layer weight updates
 
       if (optimiser == "invGrad") {
 
 
+        if(modelType=="regress"){
 
-        dw = t(t(y - ypred) %*% feedOut[[i - 1]])
-        db = sum((y - ypred))
+          inputToLayer=feedOut[[i - 1]]
+
+        dw = corpcor::pseudoinverse(cbind(1,inputToLayer)) %*% (y - ypred)
+          }
+
       }
-      else if (optimiser %in% c("momentum", "rmsProp", "adam")) {
-        dw = t(t(y - ypred) %*% feedOut[[i - 1]])
-        db = sum((y - ypred))
+
+      if (optimiser %in% c("momentum", "rmsProp", "adam")) {
 
 
         if (optimiser %in% c("momentum", "adam")) {
           prev_Mw = previousWeightUpdate[[i]]
-          prev_Mb = previousBiasUpdate[[i]]
+
           Mw = parMomentum * prev_Mw + (1 - parMomentum) * dw
-          Mb = parMomentum * prev_Mb + (1 - parMomentum) * db
+
 
           previousWeightUpdate[[i]] <- Mw
-          previousBiasUpdate[[i]] <- Mb
+
         }
 
 
         if (optimiser %in% c("rmsProp", "adam")) {
           prev_Rw = previousWeightAdapt[[i]]
-          prev_Rb = previousBiasAdapt[[i]]
+
           Rw = parRmsProp * prev_Rw + (1 - parRmsProp) * (dw) ^ 2
-          Rb = parRmsProp * prev_Rb + (1 - parRmsProp) * (db) ^ 2
+
 
           previousWeightAdapt[[i]] <- Rw
-          previousBiasAdapt[[i]] <- Rb
+
         }
 
         if (optimiser == "momentum") {
           dw = Mw
-          db = Mb
+
         } else if (optimiser == "rmsProp") {
           dw = dw / (sqrt(Rw) + parRmsPropZeroAdjust)
-          db = db / (sqrt(Rb) + parRmsPropZeroAdjust)
+
 
         } else if (optimiser == "adam") {
           dw = Mw / (sqrt(Rw) + parRmsPropZeroAdjust)
-          db = Mb / (sqrt(Rb) + parRmsPropZeroAdjust)
+
         }
 
 
@@ -93,26 +94,31 @@ backProp <- function(x,
 
 
 
-      weightMatrix[[i]] = weightMatrix[[i]] + sizeImpact * eta * dw - regularisePar *
-        weightMatrix[[i]]
+      weightMatrix[[i]] = weightMatrix[[i]] + sizeImpact * eta * dw - regularisePar *weightMatrix[[i]]
 
 
-
-      baisUnits[[i]] = baisUnits[[i]] + sizeImpact * eta * db
+       if(modelType=="regress"){
+         zNxtLayerExp=y
+       }else{
+         #write reverse code based on activation function
+       }
 
       AllWeights <- list(
+
         weightMatrix = weightMatrix,
-        baisUnits = baisUnits,
         previousWeightUpdate = previousWeightUpdate,
-        previousBiasUpdate = previousBiasUpdate,
         previousWeightAdapt = previousWeightAdapt,
-        previousBiasAdapt = previousBiasAdapt,
-        ypred = ypred
+        ypred = ypred,
+        zNxtLayerExp=zNxtLayerExp,
+        oldWeights=oldWeights
       )
 
 
     } else{
-      AllWeights <- weightUpdate(
+
+      #hidden and input layer weight updates
+
+      AllWeights <- invweightUpdate(
         i,
         AllWeights,
         feedOut,
@@ -130,7 +136,7 @@ backProp <- function(x,
         parMomentum,
         parRmsProp,
         parRmsPropZeroAdjust,
-        sizeImpact
+        sizeImpact,modelType,oldWeights
       )
 
 

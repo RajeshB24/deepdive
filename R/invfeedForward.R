@@ -5,6 +5,7 @@
 
 #' @return
 #' @noRd
+#'
 
 invfeedForward <-
   function(xBiased,

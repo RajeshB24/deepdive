@@ -81,6 +81,7 @@ deepinversenet <- function(x,
                            ignoreNAerror = F) {
 
 
+
   reluLeak <-ifelse(reluLeak==0,
                     0.001,
                     reluLeak)
@@ -177,6 +178,7 @@ deepinversenet <- function(x,
   }
 
 
+####################################### Iterations ##################################################
 
   for (itr in 1:iterations) {
     if (itr == 1) {
@@ -199,7 +201,6 @@ deepinversenet <- function(x,
       modelType,
       eta,
       gradientClip,
-      baisUnits,
       regularisePar,
       itr,
       optimiser,
@@ -207,37 +208,30 @@ deepinversenet <- function(x,
       parRmsProp,
       parRmsPropZeroAdjust,
       previousWeightUpdate,
-      previousBiasUpdate ,
       previousWeightAdapt,
-      previousBiasAdapt,
       inputSizeImpact
     )
 
     weightMatrix <- AllWeights$weightMatrix
-    baisUnits <- AllWeights$baisUnits
     previousWeightUpdate    <- AllWeights$previousWeightUpdate
-    previousBiasUpdate      <- AllWeights$previousBiasUpdate
     previousWeightAdapt    <- AllWeights$previousWeightAdapt
-    previousBiasAdapt      <- AllWeights$previousBiasAdapt
 
     if (itr %in% msgIter) {
       if (useBatchProgress == T) {
         itry <- as.matrix(y[batchlower:batchupper, ])
         feedList <-
-          feedForward(as.matrix(x[batchlower:batchupper, ]),
+          invfeedForward(as.matrix(x[batchlower:batchupper, ]),
                       weightMatrix,
                       activation,
                       reluLeak,
-                      modelType,
-                      baisUnits)
+                      modelType)
       } else{
         itry <- as.matrix(y)
-        feedList <- feedForward(as.matrix(x),
+        feedList <- invfeedForward(as.matrix(x),
                                 weightMatrix,
                                 activation,
                                 reluLeak,
-                                modelType,
-                                baisUnits)
+                                modelType)
       }
 
 
@@ -308,20 +302,19 @@ deepinversenet <- function(x,
 
 
 
-  deepnetmod <- list(
-    weightMatrix = weightMatrix,
+  deepnetmod <- list(weightMatrix = weightMatrix,
     activation = activation,
     modelType = modelType,
     outColMax = outColMax,
     outColMin = outColMin,
     inColMax = inColMax,
     inColMin = inColMin,
-    baisUnits = baisUnits,
     reluLeak = reluLeak,
-    xcolnames = xcolnames
-  )
+    xcolnames = xcolnames)
+
   class(deepnetmod) <- "deepnet"
 
   return(deepnetmod)
 
 }
+
