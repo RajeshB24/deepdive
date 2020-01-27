@@ -27,12 +27,13 @@ invbackProp <- function(x,
 
   oldWeights=weightMatrix
   sizeImpact = min(1, 1 / (inputSizeImpact * nrow(x)))
-  feedList <-invfeedForward(x, weightMatrix, activation, reluLeak, modelType)
+  feedList <-invfeedForward(cbind(x,1), weightMatrix, activation, reluLeak, modelType)
 
   feedOut <- feedList$a_output
   zin <- feedList$z_in
 
   ypred = feedOut[[length(feedOut)]]
+
 
   for (i in length(weightMatrix):1) {
 
@@ -40,17 +41,16 @@ invbackProp <- function(x,
 
       #Output layer weight updates
 
-      if (optimiser == "invGrad") {
 
 
         if(modelType=="regress"){
 
           inputToLayer=feedOut[[i - 1]]
 
-        dw = corpcor::pseudoinverse(cbind(1,inputToLayer)) %*% (y - ypred)
+        dw = corpcor::pseudoinverse(cbind(inputToLayer,1)) %*% (y - ypred)
           }
 
-      }
+
 
       if (optimiser %in% c("momentum", "rmsProp", "adam")) {
 
@@ -136,7 +136,7 @@ invbackProp <- function(x,
         parMomentum,
         parRmsProp,
         parRmsPropZeroAdjust,
-        sizeImpact,modelType,oldWeights
+        sizeImpact,modelType
       )
 
 

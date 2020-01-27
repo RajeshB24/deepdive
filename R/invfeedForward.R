@@ -18,12 +18,13 @@ invfeedForward <-
 
 
     for (i in 1:length(weightMatrix)) {
+
       if (i == 1) {
         a_input <- xBiased
 
         z_input <- as.matrix(a_input) %*% weightMatrix[[i]]
       } else{
-        z_input <- cbind(1, as.matrix(a_input)) %*% weightMatrix[[i]]
+        z_input <- as.matrix(cbind(a_input,1)) %*% weightMatrix[[i]]
 
 
       }
@@ -35,6 +36,7 @@ invfeedForward <-
       if (i < length(weightMatrix)) {
         if (activation[i] == "relu") {
           a_input <- ifelse(z_input < 0, reluLeak, z_input)
+
         } else if (activation[i] == "none") {
           a_input <- z_input
 

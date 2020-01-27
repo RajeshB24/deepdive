@@ -149,9 +149,6 @@ deepinversenet <- function(x,
 
 
 
-  x <- cbind(const = rep(1, nrow(x)), x)
-
-
 
 
 
@@ -180,6 +177,7 @@ deepinversenet <- function(x,
 
 ####################################### Iterations ##################################################
 
+
   for (itr in 1:iterations) {
     if (itr == 1) {
       prevBatch = 0
@@ -190,7 +188,6 @@ deepinversenet <- function(x,
 
     batchupper = miniBatchIndex[, "batchupper"]
     batchlower = miniBatchIndex[, "batchlower"]
-
 
     AllWeights <- invbackProp(
       as.matrix(x[batchlower:batchupper, ]),
@@ -220,14 +217,14 @@ deepinversenet <- function(x,
       if (useBatchProgress == T) {
         itry <- as.matrix(y[batchlower:batchupper, ])
         feedList <-
-          invfeedForward(as.matrix(x[batchlower:batchupper, ]),
+          invfeedForward(as.matrix(cbind(x[batchlower:batchupper, ],1)),
                       weightMatrix,
                       activation,
                       reluLeak,
                       modelType)
       } else{
         itry <- as.matrix(y)
-        feedList <- invfeedForward(as.matrix(x),
+        feedList <- invfeedForward(as.matrix(cbind(x,1)),
                                 weightMatrix,
                                 activation,
                                 reluLeak,

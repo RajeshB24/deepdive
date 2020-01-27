@@ -53,33 +53,44 @@ invweightUpdate <- function(i,
 
   zNxtLayerExp<-AllWeights$zNxtLayerExp
 
-    #Layer Expected Output Calculated Guess
 
-    nxtLayerWeights<-oldWeights[[i+1]]
 
-    acurLayerExp=( 1/( nrow(nxtLayerWeights)-1))* ((zNxtLayerExp-nxtLayerWeights[1,])%*%
-      t( 1/nxtLayerWeights[-1,]))
+nxtLayerWeights<-oldWeights[[i+1]]
+
+
+  #  nxtLayerWeights<-weightMatrix[[i+1]]
+
+
+     #Layer Expected Output Calculated Guess
+
+    acurLayerExp=( 1/( nrow(nxtLayerWeights)-1))*
+                 ((zNxtLayerExp-matrix(rep(nxtLayerWeights[nrow(nxtLayerWeights),],nrow(zNxtLayerExp)),
+                            ncol = ncol(zNxtLayerExp),byrow = T))%*%
+                 t( 1/nxtLayerWeights[-nrow(nxtLayerWeights),]))
 
     if(activation[i]=="relu"){
 
       zcurLayerExp=ifelse(acurLayerExp<0,acurLayerExp/reluLeak,acurLayerExp)
+    }else if(activation[i]=="none"){
+      zcurLayerExp=acurLayerExp
     }
 
 
   #Inverse Gradient
 
   if(i>1){
-  hw=corpcor::pseudoinverse(cbind(1,zin[[i-1]]))%*%(zcurLayerExp-zin[[i]])
+
+  hw=corpcor::pseudoinverse(cbind(feedOut[[i - 1]],1))%*%(zcurLayerExp-zin[[i]])
   }else{
-    hw=corpcor::pseudoinverse(x)%*%(zcurLayerExp-zin[[i]])
+    hw=corpcor::pseudoinverse(cbind(x,1))%*%(zcurLayerExp-zin[[i]])
   }
 
 
+  #gradient Clipping
+ # gradientMax= abs(gradientClip*weightMatrix[[i]])
 
-  gradientMax= abs(gradientClip*weightMatrix[[i]])
 
-
-  hw= pmin(gradientMax,abs(hw))*(hw/abs(hw))
+ # hw= pmin(gradientMax,abs(hw))*(hw/abs(hw))
 
 
   if(optimiser %in% c("momentum","rmsProp","adam")){
