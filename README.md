@@ -10,17 +10,17 @@
 <!-- badges: end -->
 
 This package aims to provide simple intuitive functions to create quick
-protoypes of artificial neural network or deep learning models for
+prototypes of artificial neural network or deep learning models for
 general purpose application. In addition, check out experimental
 algorithms from my personal research , **deeptree** and **deepforest**
-for special cases to achieve better accuracy / generalisation.
+for special cases to achieve better accuracy / generalization.
 
-**deeptree**: This algorithms builds a tree to divide the solution space
-in to leaves and fits a artificial neural network to each leaf. This
-approach takes adavantage distinct propeties of a tree and neural
-network. It has tendency to overfit but multiple parameters can be tuned
-to achieve better generalisation. This model has a provision to stack
-predictions from other models.
+**deeptree**: This algorithm builds a CART tree to divide the solution
+space in to leaves and fits an artificial neural network to each leaf.
+This approach takes advantage of distinct properties of a tree and
+neural network. It has tendency to overfit but multiple parameters can
+be tuned to achieve better generalization. This model has a provision to
+stack predictions from other models.
 
 **deepforest**: This algorithm builds multiple deepnets/deeptrees from
 which either best deepnet can be selected by passing all variable and
@@ -59,11 +59,11 @@ library(deepdive)
  iterations =20,
  eta=0.8,
  optimiser="adam")
-#> [1] "iteration 3: 3569.57847415291"
-#> [1] "iteration 7: 2725.63569597734"
-#> [1] "iteration 11: 1971.95728122036"
-#> [1] "iteration 15: 1965.59385414583"
-#> [1] "iteration 20: 2097.03480959164"
+#> [1] "iteration 3: 3761.44396977026"
+#> [1] "iteration 7: 2898.0156595373"
+#> [1] "iteration 11: 2051.36482379258"
+#> [1] "iteration 15: 1910.43931165915"
+#> [1] "iteration 20: 2089.87306230365"
 
  #predict
 # predDeepNet<-predict.deepnet(modelnet,newData=x)
