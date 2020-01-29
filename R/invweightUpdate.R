@@ -24,6 +24,8 @@
 #'
 #' @noRd
 #' @examples
+
+
 invweightUpdate <- function(i,
                          AllWeights,
                          feedOut,
@@ -55,18 +57,25 @@ invweightUpdate <- function(i,
 
 
 
-nxtLayerWeights<-oldWeights[[i+1]]
+ #nxtLayerWeights<-oldWeights[[i+1]]
 
 
-  #  nxtLayerWeights<-weightMatrix[[i+1]]
+  nxtLayerWeights<-weightMatrix[[i+1]]
 
 
      #Layer Expected Output Calculated Guess
 
+  biasVal=matrix(rep(nxtLayerWeights[nrow(nxtLayerWeights),],nrow(zNxtLayerExp)),
+                 ncol = ncol(zNxtLayerExp),byrow = T)
+
+
+  varWeights=matrix(nxtLayerWeights[-nrow(nxtLayerWeights),],ncol=ncol(oldWeights[[i+1]]))
+
+
+
     acurLayerExp=( 1/( nrow(nxtLayerWeights)-1))*
-                 ((zNxtLayerExp-matrix(rep(nxtLayerWeights[nrow(nxtLayerWeights),],nrow(zNxtLayerExp)),
-                            ncol = ncol(zNxtLayerExp),byrow = T))%*%
-                 t( 1/nxtLayerWeights[-nrow(nxtLayerWeights),]))
+                 ((zNxtLayerExp-biasVal)%*%
+                     t( 1/varWeights)  )
 
     if(activation[i]=="relu"){
 
@@ -117,8 +126,7 @@ nxtLayerWeights<-oldWeights[[i+1]]
 
 
 
-  weightMatrix[[i]] <- weightMatrix[[i]] +  sizeImpact*eta * hw
-                                         - regularisePar*weightMatrix[[i]]
+  weightMatrix[[i]] <- weightMatrix[[i]] + sizeImpact*  eta * hw - regularisePar*weightMatrix[[i]]
 
 
   return(list(weightMatrix=weightMatrix,

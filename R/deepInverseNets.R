@@ -111,23 +111,6 @@ deepinversenet <- function(x,
     x <- x[, -xfctrChrColsIdx]
   }
 
-  #Input Normalisation
-  inColMax = sapply(x, max)
-  inColMin = sapply(x, min)
-
-
-  for (i in 1:ncol(x)) {
-    x[, i] <- (x[, i] - inColMin[i]) / (inColMax[i] - inColMin[i])
-  }
-
-  #Output Normalisation
-  outColMax = sapply(y, max)
-  outColMin = sapply(y, min)
-
-  for (i in 1:ncol(y)) {
-    y[, i] <- (y[, i] - outColMin[i]) / (outColMax[i] - outColMin[i])
-  }
-
 
   inputColCount = ncol(x)
   outputColCount = ncol(y)
@@ -143,7 +126,7 @@ deepinversenet <- function(x,
   weightMatrix <<-
     lapply(c(1:length(interVariableCount)),
            function(i) {
-             weightInitialiser(i, interVariableCount, interOutCount, seed, activation)
+             invweightInitialiser(i, interVariableCount, interOutCount, seed*i, activation)
            })
 
 
@@ -167,18 +150,22 @@ deepinversenet <- function(x,
                                  })
 
 
-  printItrSize <- min(round(iterations / 5, 0), printItrSize)
+  printItrSize <- max(min(round(iterations / 5, 0), printItrSize),1)
   msgIter <- seq(0, iterations, by = printItrSize)
 
   if (max(msgIter) < iterations) {
     msgIter <- c(msgIter, iterations)
   }
 
-
+  msgIter<-c(1:iterations)
 ####################################### Iterations ##################################################
 
+costList<-c()
+  prevCost<-NA
 
   for (itr in 1:iterations) {
+
+
     if (itr == 1) {
       prevBatch = 0
     }
@@ -209,7 +196,10 @@ deepinversenet <- function(x,
       inputSizeImpact
     )
 
-    weightMatrix <- AllWeights$weightMatrix
+
+
+    weightMatrix <-  AllWeights$weightMatrix
+
     previousWeightUpdate    <- AllWeights$previousWeightUpdate
     previousWeightAdapt    <- AllWeights$previousWeightAdapt
 
@@ -238,19 +228,21 @@ deepinversenet <- function(x,
 
 
 
-      for (ci in 1:ncol(itrypred)) {
-        itrypred[, ci] <-
-          itrypred[, ci] * (outColMax[ci] - outColMin[ci]) + outColMin[ci]
-
-      }
-
-      for (ci in 1:ncol(y)) {
-        itry[, ci] <- itry[, ci] * (outColMax[ci] - outColMin[ci]) + outColMin[ci]
-      }
-
       #rmse
 
       costFun <- sqrt(mean((itrypred - itry) ^ 2))
+
+       if(is.na(prevCost)){
+         prevCost=costFun
+       }
+
+      if(costFun<prevCost){
+
+        finalPred=itrypred
+      finalWeights<-weightMatrix
+      }
+
+      costList[length(costList)+1]<-costFun
 
     }
 
@@ -294,12 +286,14 @@ deepinversenet <- function(x,
 
     }
 
+
+
   }
 
 
+plot(costList,type="line")
 
-
-  deepnetmod <- list(weightMatrix = weightMatrix,
+  deepnetmod <- list(weightMatrix = finalWeights,
     activation = activation,
     modelType = modelType,
     outColMax = outColMax,
@@ -314,4 +308,6 @@ deepinversenet <- function(x,
   return(deepnetmod)
 
 }
+
+
 

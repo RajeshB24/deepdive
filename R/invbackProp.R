@@ -34,7 +34,7 @@ invbackProp <- function(x,
 
   ypred = feedOut[[length(feedOut)]]
 
-
+#  i=3
   for (i in length(weightMatrix):1) {
 
     if (i == length(weightMatrix)) {
@@ -48,6 +48,8 @@ invbackProp <- function(x,
           inputToLayer=feedOut[[i - 1]]
 
         dw = corpcor::pseudoinverse(cbind(inputToLayer,1)) %*% (y - ypred)
+
+
           }
 
 
@@ -94,8 +96,7 @@ invbackProp <- function(x,
 
 
 
-      weightMatrix[[i]] = weightMatrix[[i]] + sizeImpact * eta * dw - regularisePar *weightMatrix[[i]]
-
+     weightMatrix[[i]] = weightMatrix[[i]] + sizeImpact * eta * dw - regularisePar *weightMatrix[[i]]
 
        if(modelType=="regress"){
          zNxtLayerExp=y
