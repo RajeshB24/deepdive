@@ -92,8 +92,15 @@ predict.deeptree <-
 
     ypred[is.na(ypred)]=0
     ypred <- ypred[order(ypred$rowname), ]
-    # names(ypred)[1] <- c('pred_y')
+
+    if(object$modelGroup[[1]]$modelType=="regress"){
+      names(ypred)[1]<-"pred_y"
+    }
+
+    if(object$modelGroup[[1]]$modelType=="multiClass"){
+      ypred$pred_y<-stringr::str_remove_all(ypred$pred_y,"pred_y..s.._")
+    }
 
 
-    return(data.frame(pred_y = ypred))
+    return(data.frame(ypred))
   }
