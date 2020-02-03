@@ -181,17 +181,28 @@ return(names(x[[s]])[idx])
                        useBatchProgress,
                        ignoreNAerror)})
 
+if(!is.na(stackPred)&modelType=="regress"){
+
 
 
   treeErrorlist<-unlist(lapply(1:length(modelGroup), function(fl){
+
+
+
+    pred_y<-predict(modelGroup[[fl]],x[[fl]])$pred_y
+
+
     sum((modelGroup[[fl]]$fitted-y[[fl]])^2)
+
+
   }))
 
-  if(is.list(stackPred)){
+
  useStackPred<-ifelse(is.na(treeErrorlist),T, stackErrorsplit<treeErrorlist)
 
-  }else{
-    useStackPred<-F
+
+}else{
+  useStackPred<-F
 }
 
   if(!preBuiltTree){

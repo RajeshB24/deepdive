@@ -20,7 +20,8 @@ space in to leaves and fits an artificial neural network to each leaf.
 This approach takes advantage of distinct properties of a tree and
 neural network. It has tendency to overfit but multiple parameters can
 be tuned to achieve better generalization. This model has a provision to
-stack predictions from other models.
+stack predictions from other models(currently available only for
+regression).
 
 **deepforest**: This algorithm builds multiple deepnets/deeptrees from
 which either best deepnet can be selected by passing all variable and
@@ -59,11 +60,11 @@ library(deepdive)
  iterations =20,
  eta=0.8,
  optimiser="adam")
-#> [1] "iteration 3: 3761.44396977026"
-#> [1] "iteration 7: 2898.0156595373"
-#> [1] "iteration 11: 2051.36482379258"
-#> [1] "iteration 15: 1910.43931165915"
-#> [1] "iteration 20: 2089.87306230365"
+#> [1] "iteration 3: 3553.94671508011"
+#> [1] "iteration 7: 2711.24405450061"
+#> [1] "iteration 11: 1959.94385253094"
+#> [1] "iteration 15: 1954.79565795468"
+#> [1] "iteration 20: 2083.97192805399"
 
  #predict
 # predDeepNet<-predict.deepnet(modelnet,newData=x)
