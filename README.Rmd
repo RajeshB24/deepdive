@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 This package aims to provide simple intuitive functions to create quick prototypes of artificial neural network or deep learning models for general purpose application. In addition, check out experimental algorithms from my personal research , **deeptree** and **deepforest** for special cases to achieve better accuracy / generalization.
 
 
-**deeptree**: This algorithm builds a CART tree to divide the solution space in to leaves and fits an artificial neural network to each leaf. This approach takes advantage of distinct properties of a tree and neural network. It has tendency to overfit but multiple parameters can be tuned to achieve better generalization. This model has a provision to stack predictions from other models(currently available only for regression).
+**deeptree**: This algorithm builds a CART tree to divide the solution space in to leaves and fits an artificial neural network to each leaf. This approach takes advantage of distinct properties of a tree and neural network. It has tendency to overfit but multiple parameters can be tuned to achieve better generalization. This model has a provision to stack predictions from other models(currently stacking is only available for regression).
 
 **deepforest**: This algorithm builds  multiple deepnets/deeptrees from which either best deepnet can be selected by passing all variable and data to each network or random deepnets/deeptrees based on random cuts of variable/data can be combined together over a error choice. 
 
