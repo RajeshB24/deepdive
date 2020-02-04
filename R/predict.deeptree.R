@@ -18,6 +18,8 @@
 #' @importFrom treeClust rpart.predict.leaves
 #' @importFrom graphics barplot
 #' @importFrom stats formula predict runif
+#'
+#'
 
 predict.deeptree <-
   function(object,
@@ -67,12 +69,17 @@ predict.deeptree <-
       })
     }
 
-
-
     predlist <-  lapply(1:length(modelGroup)
                         , function(mg) {
                           if (!useStackPred[[mg]]) {
-                            predict.deepnet(modelGroup[[mg]], newDataSplit[[mg]][, xCols[[mg]]])
+                            if(class( modelGroup[[mg]])=="deepnet"){
+                       predict.deepnet(modelGroup[[mg]], newDataSplit[[mg]][, xCols[[mg]]])
+                            }else {
+                                ypred= data.frame(pred_y=rep(modelGroup[[mg]],
+                                                             nrow(newDataSplit[[mg]])))
+                              }
+
+
                           } else{
                             stackPred[[mg]]
                           }
@@ -93,13 +100,31 @@ predict.deeptree <-
     ypred[is.na(ypred)]=0
     ypred <- ypred[order(ypred$rowname), ]
 
-    if(object$modelGroup[[1]]$modelType=="regress"){
+    if(object$modelType=="regress"){
       names(ypred)[1]<-"pred_y"
     }
 
-    if(object$modelGroup[[1]]$modelType=="multiClass"){
+    if(object$modelType=="multiClass"){
       ypred$pred_y<-stringr::str_remove_all(ypred$pred_y,"pred_y..s.._")
+
+      names(ypred)<-stringr::str_remove_all(names(ypred),"pred_y..s.._")
     }
+
+    ypred<-ypred[,-which(names( ypred)%in%"rowname")]
+
+    ProbCols<- names(ypred)[!names(ypred)%in%"pred_y"]
+
+    ypred$ProbSum <-rowSums(ypred[,ProbCols])
+
+    for( icol in ProbCols ){
+    ypred[,icol]<-ifelse(ypred$ProbSum==0 &
+                                as.character(icol)==
+                                  as.character(ypred$pred_y)
+                                ,1,0
+                                )
+    }
+
+
 
 
     return(data.frame(ypred))

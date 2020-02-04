@@ -76,7 +76,7 @@
 deeptree<-function(     x,
                         y,
                         hiddenLayerUnits,
-                        activation = c('sigmoid',"sigmoid"),
+                        activation = c("sigmoid","sigmoid"),
                         reluLeak=0,
                         modelType ='regress',
                         iterations = 500,
@@ -125,6 +125,9 @@ deeptree<-function(     x,
 
   y=data.frame(y)
 
+ if( is.null(names(y))){
+   names(y)<-"y"
+ }
   #split data
   x<- lapply(treeLeavesGroup, function(tp){
     x[treeLeaves==tp,]
@@ -155,10 +158,15 @@ return(names(x[[s]])[idx])
 })
 
 
-
   modelGroup<-lapply(1:length(y),function(s){
 
-               deepnet(data.frame(x[[s]][,xColList[[s]]]),
+           if(length(unique(y[[s]]))==1){
+            tpred=unique(y[[s]])
+            names(tpred)="treepred"
+            return(tpred)
+           }else{
+
+             deepNetMod<-  deepnet(data.frame(x[[s]][,xColList[[s]]]),
                        data.frame(y[[s]]),
                        hiddenLayerUnits,
                        activation ,
@@ -179,7 +187,12 @@ return(names(x[[s]])[idx])
                        stopError,
                        miniBatchSize,
                        useBatchProgress,
-                       ignoreNAerror)})
+                       ignoreNAerror)
+
+              class(deepNetMod)="deepnet"
+              return(deepNetMod)
+             }
+    })
 
 if(!is.na(stackPred)&modelType=="regress"){
 
@@ -210,7 +223,8 @@ if(!is.na(stackPred)&modelType=="regress"){
     deeptreeMod<-list(treeLeavesGroup=treeLeavesGroup,modelGroup=modelGroup,xColList=xColList,
                       treeMod=treeMod,
                       preBuiltTree=preBuiltTree,
-                      useStackPred=useStackPred)
+                      useStackPred=useStackPred,
+                      modelType=modelType)
 
  }else{
 
@@ -220,7 +234,8 @@ if(!is.na(stackPred)&modelType=="regress"){
               xColList=xColList,
               treeMod=NA,
               preBuiltTree=preBuiltTree,
-              useStackPred=useStackPred)
+              useStackPred=useStackPred,
+              modelType=modelType)
  }
 
   class(deeptreeMod)<-'deeptree'
