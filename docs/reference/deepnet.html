@@ -117,8 +117,8 @@
     <pre class="usage"><span class='fu'>deepnet</span>(
   <span class='no'>x</span>,
   <span class='no'>y</span>,
-  <span class='no'>hiddenLayerUnits</span>,
-  <span class='kw'>activation</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sigmoid"</span>, <span class='st'>"sigmoid"</span>),
+  <span class='kw'>hiddenLayerUnits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>),
+  <span class='kw'>activation</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sigmoid"</span>, <span class='st'>"relu"</span>),
   <span class='kw'>reluLeak</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>modelType</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"regress"</span>),
   <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>500</span>,
@@ -250,16 +250,12 @@
 <span class='kw'>modelType</span> <span class='kw'>=</span> <span class='st'>"regress"</span>,
 <span class='kw'>iterations</span> <span class='kw'>=</span><span class='fl'>5</span>,
 <span class='kw'>eta</span><span class='kw'>=</span><span class='fl'>0.8</span>,
-<span class='kw'>optimiser</span><span class='kw'>=</span><span class='st'>"adam"</span>)</div><div class='output co'>#&gt; [1] "iteration 0: 59.2102845544566"
-#&gt; [1] "iteration 1: 9.24743355075321"
-#&gt; [1] "iteration 2: 26.8344061706784"
-#&gt; [1] "iteration 3: 27.7147060167456"
-#&gt; [1] "iteration 5: 19.01116680857"</div><div class='input'>
+<span class='kw'>optimiser</span><span class='kw'>=</span><span class='st'>"adam"</span>)</div><div class='output co'>#&gt; <span class='message'>iteration 0: 71.0066420017274</span></div><div class='output co'>#&gt; <span class='message'>iteration 1: 12.0528105033318</span></div><div class='output co'>#&gt; <span class='message'>iteration 2: 44.1034902607425</span></div><div class='output co'>#&gt; <span class='message'>iteration 3: 30.7041869626996</span></div><div class='output co'>#&gt; <span class='message'>iteration 5: 21.7325158701166</span></div><div class='input'>
 <span class='co'>#predict</span>
 <span class='no'>predDeepNet</span><span class='kw'>&lt;-</span><span class='fu'><a href='predict.deepnet.html'>predict.deepnet</a></span>(<span class='no'>modelnet</span>,<span class='kw'>newData</span><span class='kw'>=</span><span class='no'>x</span>)
 
 <span class='co'>#evaluate</span>
-<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>((<span class='no'>predDeepNet</span>$<span class='no'>ypred</span>-<span class='no'>y</span>$<span class='no'>y</span>)^<span class='fl'>2</span>))</div><div class='output co'>#&gt; [1] 19.01117</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span>((<span class='no'>predDeepNet</span>$<span class='no'>ypred</span>-<span class='no'>y</span>$<span class='no'>y</span>)^<span class='fl'>2</span>))</div><div class='output co'>#&gt; [1] 21.73252</div><div class='input'>
 
 </div></pre>
   </div>
