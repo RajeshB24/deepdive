@@ -108,7 +108,7 @@ returns model object which can be passed into \code{\link{predict.deepforest}}
 Build or train bagged deeptree or deepnet of multiple architecture.Based on error choice either select best model or average multiple model with random variable cut,data cut and architechture
 }
 \examples{
-\dontrun{
+
 mdeepf<-deepforest(x,y,
                   networkCount=3,
                   layerChoice=c(2:3),
@@ -139,5 +139,5 @@ mdeepf<-deepforest(x,y,
                   stopError=0.01,
                   miniBatchSize=64,
                   useBatchProgress=T)
-}
+
 }

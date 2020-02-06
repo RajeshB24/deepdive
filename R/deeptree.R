@@ -39,7 +39,9 @@
 #' @importFrom graphics barplot
 #' @importFrom stats formula predict runif
 #' @examples
-#' \dontrun{
+#'
+#' require(deepdive)
+#'
 #' x <- data.frame(a = runif(1000)*100,
 #' b = runif(1000)*200,
 #' c = runif(1000)*100)
@@ -70,7 +72,7 @@
 #'useBatchProgress=T,
 #'ignoreNAerror=F)
 
-#' }
+#'
 
 
 deeptree<-function(     x,

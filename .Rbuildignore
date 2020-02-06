@@ -5,3 +5,6 @@
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^deepdiveLogo\.png$
+^docs$
+^_pkgdown\.yml$
+^pkgdown$

@@ -96,7 +96,9 @@ returns model object which can be passed into \code{\link{predict.deeptree}}
 This models divides the input space by fitting a tree followed by artificial neural network to each of leaf. Decision tree model is built using rpart package and neural network using deepdive.Feature of stacking predictions from other models is also made available.
 }
 \examples{
-\dontrun{
+
+require(deepdive)
+
 x <- data.frame(a = runif(1000)*100,
 b = runif(1000)*200,
 c = runif(1000)*100)
@@ -126,5 +128,5 @@ stopError=4,
 miniBatchSize=64,
 useBatchProgress=T,
 ignoreNAerror=F)
-}
+
 }

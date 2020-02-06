@@ -42,7 +42,7 @@
 #' @importFrom graphics barplot
 #' @importFrom stats formula predict runif
 #' @examples
-#' \dontrun{
+#'
 #'mdeepf<-deepforest(x,y,
 #'                   networkCount=3,
 #'                   layerChoice=c(2:3),
@@ -73,7 +73,7 @@
 #'                   stopError=0.01,
 #'                   miniBatchSize=64,
 #'                   useBatchProgress=T)
-#' }
+#'
 deepforest<-function(x,y,
                      networkCount=3,
                      layerChoice=c(2:3),

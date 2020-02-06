@@ -2,7 +2,7 @@ Package: deepdive
 Type: Package
 Title: Deep Learning for General Purpose
 Version: 1.0.1
-Author: Rajesh Balakrishnan <rajeshbalakrishnan24@gmail.com> 
+Author: Rajesh Balakrishnan
 Maintainer: Rajesh Balakirshnan <rajeshbalakrishnan24@gmail.com> 
 Description: Aims to provide simple intuitive functions to create quick prototypes of deep learning learning models. In addition, some experimental algorithms from personal research built over artificial neural networks like deeptree and deepforest is made available for special cases to obtain better accuracy and generalisation. 
 License: MIT + file LICENSE
