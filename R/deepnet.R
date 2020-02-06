@@ -274,7 +274,7 @@ if(max(msgIter)<iterations){
       if(showProgress==T){
     if(itr %in% msgIter){
 
-    print(paste0("iteration ",
+    message(paste0("iteration ",
                 ifelse(itr==iterations,itr, itr-1)
                  ,": ",costFun))
     }
@@ -284,20 +284,20 @@ if(max(msgIter)<iterations){
     if(itr %in% msgIter ){
       if(is.na(costFun)){
         if(ignoreNAerror==F){
-        print("NA error please change eta")
+        warning("NA error.Try changing eta/specify reluleak if relu is used/If minibatch is used try increasing the size")
 
         break();}
       }
       if(is.nan(costFun)){
-        print("NaN error please change eta")
+        warning("NaN error.Try chaning eta")
         break();
       }
 
 
       if( !is.na(stopError)& !is.na(costFun)){
       if(costFun<=stopError){
-        print(paste0("iteration ",itr,": ",costFun))
-        print("Reached stop error")
+        message(paste0("iteration ",itr,": ",costFun))
+        message("Reached stop error. Reduce Change or set StopError to NA if would like more iterations ")
         break();
 
       }}
