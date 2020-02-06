@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# deepdive <img src="man/figures/logo.png" align="right" alt="" height="220" />
+# deepdive <img src="man/figures/logo.png" align="right" />
 
 **deepnet-\>deeptree-\>deepforest**
 
@@ -60,17 +60,18 @@ library(deepdive)
  iterations =20,
  eta=0.8,
  optimiser="adam")
-#> [1] "iteration 3: 3555.56899394393"
-#> [1] "iteration 7: 2741.5316342537"
-#> [1] "iteration 11: 2038.4417337685"
-#> [1] "iteration 15: 2036.12865284261"
-#> [1] "iteration 20: 2150.69076324816"
+```
 
+    ## [1] "iteration 3: 3491.93598037393"
+    ## [1] "iteration 7: 2676.95166506819"
+    ## [1] "iteration 11: 1979.30915323195"
+    ## [1] "iteration 15: 1996.28747957698"
+    ## [1] "iteration 20: 2106.61994851345"
+
+``` r
  #predict
 # predDeepNet<-predict.deepnet(modelnet,newData=x)
 
  #evaluate
 #sqrt(mean((predDeepNet$pred_y-y$y)^2))
-
- 
 ```

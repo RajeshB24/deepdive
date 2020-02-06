@@ -6,17 +6,9 @@ output: github_document
 
 
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/",
-  out.width = "100%"
-)
-```
 
 
-# deepdive <img src="man/figures/logo.png" align="right" alt="" height="220" />
+# deepdive <img src="man/figures/logo.png" align="right" />
 
 
 **deepnet->deeptree->deepforest**
