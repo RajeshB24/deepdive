@@ -54,8 +54,8 @@
 #'
 deepnet<- function(x,
                     y,
-                    hiddenLayerUnits,
-                    activation =c('sigmoid',"sigmoid"),
+                    hiddenLayerUnits=c(2,2),
+                    activation =c('sigmoid',"relu"),
                     reluLeak=0,
                     modelType = c('regress'),
                     iterations = 500,
