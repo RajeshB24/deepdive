@@ -83,13 +83,15 @@ predict.deepnet<-function(object,
   }
 
   ypred<-data.frame(ypred)
-  names(ypred)<-paste0('pred_',names(ypred))
-
+  names(ypred)<-names(ypred)
 
 
   if(modelType=="multiClass"){
-    ypred$pred_y<-stringr::str_remove_all( names(ypred),"pred_y_")[max.col(ypred)]
+    ypred$ypred<-stringr::str_remove_all( names(ypred),"y_")[max.col(ypred)]
+    names(ypred)=stringr::str_remove_all(names(ypred),"y_")
   }
+
+
 
   return(ypred)
 }

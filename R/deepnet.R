@@ -31,19 +31,17 @@
 #'@importFrom graphics barplot
 #'@importFrom stats formula predict runif
 #' @examples
-#' \dontrun{
-#' x <- data.frame(a = runif(1000)*100,
-#' b = runif(1000)*200,
-#' c = runif(1000)*100
-#' )
-#' y<- data.frame(y=20*x$a +30* x$b+10*x$c +10)
+#' require(deepdive)
+#'
+#' x <- data.frame(a = runif(10),b = runif(10))
+#' y<- data.frame(y=20*x$a +30*x$b+10)
 #'
 #' #train
 #' modelnet<-deepnet(x,y,c(2,2),
-#' activation = c('relu',"sin"),
-#' reluLeak = 0,
+#' activation = c('relu',"sigmoid"),
+#' reluLeak = 0.01,
 #' modelType = "regress",
-#' iterations =4000,
+#' iterations =5,
 #' eta=0.8,
 #' optimiser="adam")
 #'
@@ -51,9 +49,9 @@
 #' predDeepNet<-predict.deepnet(modelnet,newData=x)
 #'
 #' #evaluate
-#'sqrt(mean((predDeepNet$pred_y-y$y)^2))
+#'sqrt(mean((predDeepNet$ypred-y$y)^2))
 #'
-#' }
+#'
 deepnet<- function(x,
                     y,
                     hiddenLayerUnits,
