@@ -8,7 +8,7 @@ output: github_document
 
 
 
-# deepdive <img src="man/figures/logo.png" align="right" />
+# deepdive
 
 
 **deepnet->deeptree->deepforest**

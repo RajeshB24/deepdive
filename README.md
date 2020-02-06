@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# deepdive <img src="man/figures/logo.png" align="right" />
+# deepdive
 
 **deepnet-\>deeptree-\>deepforest**
 
@@ -62,11 +62,11 @@ library(deepdive)
  optimiser="adam")
 ```
 
-    ## [1] "iteration 3: 3491.93598037393"
-    ## [1] "iteration 7: 2676.95166506819"
-    ## [1] "iteration 11: 1979.30915323195"
-    ## [1] "iteration 15: 1996.28747957698"
-    ## [1] "iteration 20: 2106.61994851345"
+    ## [1] "iteration 3: 3626.9673670977"
+    ## [1] "iteration 7: 2777.19783594767"
+    ## [1] "iteration 11: 2021.14872706234"
+    ## [1] "iteration 15: 2010.16569753942"
+    ## [1] "iteration 20: 2141.09636263043"
 
 ``` r
  #predict
