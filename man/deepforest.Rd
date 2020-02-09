@@ -109,8 +109,13 @@ Build or train bagged deeptree or deepnet of multiple architecture.Based on erro
 }
 \examples{
 
+require(deepdive)
+
+x<-data.frame(x1=runif(10),x2=runif(10))
+y<-data.frame(y=10*x$x1+20*x$x2+20)
+
 mdeepf<-deepforest(x,y,
-                  networkCount=3,
+                  networkCount=2,
                   layerChoice=c(2:3),
                   unitsChoice=c(4:10),
                   cutVarSizePercent=0.6,
@@ -118,7 +123,7 @@ mdeepf<-deepforest(x,y,
                   activation = c('relu',"sin"),
                   reluLeak=0.01,
                   modelType ='regress',
-                  iterations = 500,
+                  iterations = 10,
                   eta = 10 ^-2,
                   seed=2,
                   gradientClip=0.8,

@@ -43,6 +43,7 @@
 #' @importFrom graphics barplot
 #' @importFrom stats formula predict runif
 #' @examples
+#'
 #' require(deepdive)
 #'
 #'x<-data.frame(x1=runif(10),x2=runif(10))
