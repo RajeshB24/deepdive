@@ -75,10 +75,10 @@
 #'                   errorCover=0.2,
 #'                   treeAugment=T,
 #'                   printItrSize=100,
-#'                   showProgress=T,
+#'                   showProgress=True,
 #'                   stopError=0.01,
 #'                   miniBatchSize=64,
-#'                   useBatchProgress=T)
+#'                   useBatchProgress=True)
 
 
 deepforest<-function(x,y,
