@@ -76,6 +76,11 @@ deepnet<- function(x,
                     ignoreNAerror=F
 ) {
 
+  if(modelType=="multiClass"){
+    y[,1]<-as.character(y[,1])
+
+  }
+
   if(is.na(miniBatchSize)){
     miniBatchSize=nrow(x)
   }

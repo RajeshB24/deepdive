@@ -7,7 +7,7 @@
 deeptree(
   x,
   y,
-  hiddenLayerUnits,
+  hiddenLayerUnits = c(2, 2),
   activation = c("sigmoid", "sigmoid"),
   reluLeak = 0,
   modelType = "regress",

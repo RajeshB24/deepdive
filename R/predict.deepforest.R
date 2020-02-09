@@ -24,21 +24,49 @@ predict.deepforest<-function(object,
   modelGroup=object$chosenModels
   treeAugment=object$treeAugment
 
-
-
+  o<-1
   predlist<-  lapply(1:length(modelGroup)
                      , function(o){
 
                        if(treeAugment==F){
-                       as.matrix(predict.deepnet(modelGroup[[o]],newData[,varCut[[o]]]))}else{
 
-                         xFit<-newData[,varCut[[o]]]
 
+                         xFit<-data.frame(newData[,varCut[[o]]])
+                         names(xFit)<-varCut[[o]]
+
+
+                       deepnetPred<-predict.deepnet(modelGroup[[o]],xFit)
+
+
+
+
+                       deepnetPred<-deepnetPred[,names(deepnetPred)!="ypred"]
+                       for( i in names(deepnetPred)){
+
+                         deepnetPred[,i]   <-as.numeric(deepnetPred[,i] )
+
+                       }
+                    deepnetPred
+
+                         }else{
+
+                         xFit<-data.frame(newData[,varCut[[o]]])
+                         names(xFit)<-varCut[[o]]
 
                          augmentPred<- predict.deeptree(modelGroup[[o]],
                            newData =xFit)
 
-                        as.matrix(augmentPred)
+                         if(object$modelType=="multiClass"){
+                         augmentPred<-augmentPred[,names(augmentPred)!="ypred"]
+
+
+                        for( i in names(augmentPred)){
+
+                          augmentPred[,i]   <-as.numeric(augmentPred[,i] )
+
+                        }}
+                       augmentPred
+
 
                        }
 
@@ -51,6 +79,14 @@ predarray<-array(unlist(predlist),c(nrow(newData),ncol(predlist[[1]]),networkCou
 
 predDf<-data.frame(apply(predarray, 1:2, mean))
 names(predDf)<-colnames(predlist[[1]])
+
+
+if(object$modelType=="multiClass"){
+  predDf$ypred<-stringr::str_remove_all( names(predDf),"y_")[max.col(predDf)]
+  names(predDf)=stringr::str_remove_all(names(predDf),"y_")
+}
+
+
 
   return(predDf)
 }

@@ -23,15 +23,21 @@ inVars<-colnames(x)
 if(model$modelType=="multiClass"){
 
   y<-dummy_cols(y)[-1]
-
+  names(y)<-stringr::str_remove(names(y),"y_")
 }
 
 modelPred<- predict(model,x)
 
 if(model$modelType=="multiClass"){
+
 names(modelPred)<-stringr::str_remove(names(modelPred),"pred_")
 
-modelPred<-modelPred[,names(y)]
+
+modelPred<-modelPred[,!names(modelPred)%in%"ypred"]
+for(i in 1:ncol(modelPred)){
+  modelPred[,i]<-as.numeric(modelPred[,i])
+}
+
 }
 modelError<-sqrt(mean((as.matrix(y-modelPred)^2)))
 
@@ -48,7 +54,7 @@ ImportanceDf<-data.frame(variable=inVars,
                          errorDiff=errorDiff
                          )
 
-ImportanceDf$RelativeImportance<-ImportanceDf$errorDiff/max(ImportanceDf$errorDiff)
+ImportanceDf$Importance<-ImportanceDf$errorDiff/max(ImportanceDf$errorDiff)
 
 ImportanceDf<-ImportanceDf[order(errorDiff,decreasing = T),]
 

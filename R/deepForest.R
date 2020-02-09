@@ -38,6 +38,7 @@
 #' @export
 #' @import rpart
 #' @import data.table
+#' @importFrom stringr str_remove_all
 #' @importFrom treeClust rpart.predict.leaves
 #' @importFrom graphics barplot
 #' @importFrom stats formula predict runif
@@ -73,7 +74,8 @@
 #'                   stopError=0.01,
 #'                   miniBatchSize=64,
 #'                   useBatchProgress=T)
-#'
+
+
 deepforest<-function(x,y,
                      networkCount=3,
                      layerChoice=c(2:3),
@@ -108,18 +110,19 @@ deepforest<-function(x,y,
 ){
 
 
+
   multiLayerList<-multiLayerIntialiser(layerChoice,
                                        unitsChoice,
                                        networkCount,seed)
 
 
   activationList<- multiActivationList(multiLayerList,activation,seed)
+
   dataCut<-multiDataCut(x,y,networkCount,cutDataSizePercent,cutVarSizePercent,seed)
 
   xCut=dataCut$xCut
   yCut=dataCut$yCut
   varCut=dataCut$varCut
-
 
 
   multiSeed<-seed*c(1:networkCount)
@@ -133,9 +136,17 @@ deepforest<-function(x,y,
         length(unique(xCut[[nc]][,m]))
       })>1)
 
+      if(length(idx)>1){
+        xSelect<-xCut[[nc]][,idx]
+      }else{
+        xSelect<-data.frame(xCut[[nc]][,idx])
+        names(xSelect)<-names(xCut[[nc]])[idx]
+      }
 
-                 deepnet(xCut[[nc]][,idx],
-                         yCut[[nc]],
+
+
+                 deepnet(xSelect,
+                         data.frame( yCut[[nc]]),
                          hiddenLayerUnits=multiLayerList[[nc]],
                          activationList[[nc]] ,
                          reluLeak,
@@ -165,8 +176,15 @@ deepforest<-function(x,y,
                  })>1)
 
 
-                  deeptree(     xCut[[nc]][,idx],
-                                         yCut[[nc]],
+                 if(length(idx)>1){
+                  xSelect<-xCut[[nc]][,idx]
+                 }else{
+                  xSelect<-data.frame(xCut[[nc]][,idx])
+                  names(xSelect)<-names(xCut[[nc]])[idx]
+                 }
+
+                  deeptree(    xSelect,
+                                        data.frame( yCut[[nc]]),
                                          hiddenLayerUnits=multiLayerList[[nc]],
                                          activationList[[nc]] ,
                                          reluLeak,
@@ -197,28 +215,75 @@ deepforest<-function(x,y,
                } })
 
 
-
-
-
       fitPerf<-unlist(lapply(1:length(modelForest), function(mf){
 
         fitModel<-modelForest[[mf]]
 
 
-        xFit<-xCut[[mf]][,varCut[[mf]]]
+        xFit<-data.frame(xCut[[mf]][,varCut[[mf]]])
+        names(xFit)<-varCut[[mf]]
+
         row.names(xFit)<-1:nrow(xFit)
         yFit<-yCut[[mf]]
         row.names(yFit)<-1:nrow(yFit)
 
         if(treeAugment==T){
+
         augmentPred<- predict.deeptree(fitModel,
                                        newData=xFit)
 
 
-        sqrt(mean((augmentPred$pred_y-yFit$y)^2))/mean(abs(yFit$y))}else{
+       if(modelType=="multiClass"){
+
+            multiClassPred<-augmentPred[,names(augmentPred)!="ypred"]
+            yClass<-dummy_cols(yFit)
+            yClass<-yClass[,names(yClass)!="y"]
+            names(yClass)<-str_remove_all(names(yClass),"y_")
+
+            for(idx in 1:ncol(multiClassPred)){
+              multiClassPred[,idx]<-as.numeric(multiClassPred[,idx])
+            }
+
+
+          selectCol<-names(multiClassPred)[names(yClass)%in%names(multiClassPred)]
+          sqrt(mean((
+            as.matrix(multiClassPred[,selectCol]-yClass[,selectCol])
+            )^2))/mean(as.matrix(abs(yClass)))
+       } else{
+
+         sqrt(mean((augmentPred$ypred-yFit$y)^2))/mean(abs(yFit$y))
+
+       }
+
+
+        }else{
           netPred<- predict.deepnet(fitModel,
                                          newData=xFit)
-          sqrt(mean((netPred$pred_y-yFit$y)^2))/mean(abs(yFit$y))
+          if(modelType=="multiClass"){
+
+
+            multiClassPred<-netPred[,names(netPred)!="ypred"]
+            yClass<-dummy_cols(yFit)
+            yClass<-yClass[,names(yClass)!="y"]
+            names(yClass)<-str_remove_all(names(yClass),"y_")
+
+            for(idx in 1:ncol(multiClassPred)){
+              multiClassPred[,idx]<-as.numeric(multiClassPred[,idx])
+            }
+
+
+
+            sqrt(mean((
+              as.matrix(multiClassPred[,names(yClass)]-yClass)
+            )^2))/mean(as.matrix(abs(yClass)))
+
+
+
+          }else{
+
+            sqrt(mean((netPred$ypred-yFit$y)^2))/mean(abs(yFit$y))
+          }
+
         }
 
       }))
@@ -233,7 +298,9 @@ deepforest<-function(x,y,
 
   deepforestmod<-list(varcut=varCut[chosenIndex],
                       chosenModels=chosenModels,
-                      treeAugment=treeAugment)
+                      treeAugment=treeAugment,
+                      modelType=modelType
+                      )
   class(deepforestmod)<-'deepforest'
 
   return(deepforestmod)

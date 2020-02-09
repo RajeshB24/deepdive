@@ -139,5 +139,4 @@ mdeepf<-deepforest(x,y,
                   stopError=0.01,
                   miniBatchSize=64,
                   useBatchProgress=T)
-
 }

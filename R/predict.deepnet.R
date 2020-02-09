@@ -12,6 +12,7 @@
 #' @importFrom graphics barplot
 #' @importFrom stats formula predict runif
 
+
 predict.deepnet<-function(object,
                           newData,...){
 
@@ -27,7 +28,9 @@ predict.deepnet<-function(object,
   inColMax=object[['inColMax']]
   xcolnames=object[['xcolnames']]
 
+  if(length(xcolnames)>1){
   newData<-newData[,xcolnames]
+  }
 
   xType<-sapply(newData,class)
 
@@ -37,22 +40,25 @@ predict.deepnet<-function(object,
   if(length(xfctrChrColsIdx)>0L){
     newData<-fastDummies::dummy_cols(newData)
     newData<-newData[,-xfctrChrColsIdx]
+
   }
 
 
+  newData<-data.frame(newData)
 
   for(i in 1:ncol(newData)){
     newData[,i]<- (newData[,i]-inColMin[i])/(inColMax[i]-inColMin[i])
-  }
+    }
 
 
   newData<-as.matrix(cbind(const = rep(1, nrow(newData)), newData))
 
 
+  if(ncol(newData)>2){
    reqmat<-matrix(1,ncol = nrow(weightMatrix[[1]]))
 
-  colnames(reqmat)<-row.names(weightMatrix[[1]])
 
+  colnames(reqmat)<-row.names(weightMatrix[[1]])
 
 
   newData<-plyr::rbind.fill(as.data.frame(reqmat),
@@ -60,10 +66,12 @@ predict.deepnet<-function(object,
 
 
   newData<-as.matrix(newData[-1,])
+  newData<- newData[,colnames(reqmat)]
+  }
 
   newData[is.na(newData)]<-0
 
-  newData<- newData[,colnames(reqmat)]
+
 
   feedList<- feedForward( newData, weightMatrix, activation,reluLeak, modelType,baisUnits)
 
@@ -90,6 +98,7 @@ predict.deepnet<-function(object,
     ypred$ypred<-stringr::str_remove_all( names(ypred),"y_")[max.col(ypred)]
     names(ypred)=stringr::str_remove_all(names(ypred),"y_")
   }
+
 
 
 

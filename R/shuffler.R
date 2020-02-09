@@ -40,7 +40,12 @@ shuffler<-function(x,colname,y,model,modelError,seed){
   if(model$modelType=="multiClass"){
     names(shufflePred)<-stringr::str_remove(names(shufflePred),"pred_")
 
-    shufflePred<-shufflePred[,names(y)]
+    shufflePred<-shufflePred[,!names(shufflePred)%in%"ypred"]
+
+    for(i in 1:ncol(shufflePred)){
+      shufflePred[,i]<-as.numeric(shufflePred[,i])
+    }
+
   }
 
 

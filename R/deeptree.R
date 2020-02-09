@@ -77,7 +77,7 @@
 
 deeptree<-function(     x,
                         y,
-                        hiddenLayerUnits,
+                        hiddenLayerUnits=c(2,2),
                         activation = c("sigmoid","sigmoid"),
                         reluLeak=0,
                         modelType ='regress',
@@ -130,9 +130,13 @@ deeptree<-function(     x,
  if( is.null(names(y))){
    names(y)<-"y"
  }
+
+
   #split data
   x<- lapply(treeLeavesGroup, function(tp){
-    x[treeLeaves==tp,]
+   sx=data.frame( x[treeLeaves==tp,])
+   names(sx)<-names(x)
+   sx
   })
 
   y<-lapply(treeLeavesGroup, function(tp){
@@ -152,13 +156,14 @@ deeptree<-function(     x,
 
 
 #Below code removes columns which have only 1 unique value in X
-xColList<-lapply(1:length(y),function(s){idx<-which(sapply(1:ncol(x[[s]]), function(m){
+xColList<-lapply(1:length(y),function(s){
+
+  idx<-which(sapply(1:ncol(x[[s]]), function(m){
   length(unique(x[[s]][,m]))
 })>1)
 
 return(names(x[[s]])[idx])
 })
-
 
 
   modelGroup<-lapply(1:length(y),function(s){
@@ -205,7 +210,7 @@ if(!is.na(stackPred)&modelType=="regress"){
 
 
 
-    pred_y<-predict(modelGroup[[fl]],x[[fl]])$pred_y
+    pred_y<-predict(modelGroup[[fl]],x[[fl]])$ypred
 
 
     sum((modelGroup[[fl]]$fitted-y[[fl]])^2)

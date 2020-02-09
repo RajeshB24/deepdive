@@ -19,7 +19,6 @@
 #' @importFrom graphics barplot
 #' @importFrom stats formula predict runif
 #'
-#'
 
 predict.deeptree <-
   function(object,
@@ -58,9 +57,10 @@ predict.deeptree <-
 
     }
 
-
     newDataSplit <- lapply(treeLeavesGroup, function(tp) {
-      newData[treeLeaves == tp, ]
+     sdata<-data.frame( newData[treeLeaves == tp, ])
+      names(sdata)<-names(newData)
+      sdata
     })
 
     if (sum(useStackPred) > 0) {
@@ -73,10 +73,16 @@ predict.deeptree <-
                         , function(mg) {
                           if (!useStackPred[[mg]]) {
                             if(class( modelGroup[[mg]])=="deepnet"){
-                       predict.deepnet(modelGroup[[mg]], newDataSplit[[mg]][, xCols[[mg]]])
+                              if(length(xCols[[mg]])==1){
+                              predict.deepnet(modelGroup[[mg]],
+                                      newDataSplit[[mg]])}else{
+                                        predict.deepnet(modelGroup[[mg]],
+                                                        newDataSplit[[mg]][, xCols[[mg]]])
+                                      }
                             }else {
-                                ypred= data.frame(pred_y=rep(modelGroup[[mg]],
+                                ypred= data.frame(ypred=rep(modelGroup[[mg]],
                                                              nrow(newDataSplit[[mg]])))
+                                ypred
                               }
 
 
@@ -97,35 +103,54 @@ predict.deeptree <-
     ))
 
 
+
+
     ypred[is.na(ypred)]=0
     ypred <- ypred[order(ypred$rowname), ]
 
     if(object$modelType=="regress"){
-      names(ypred)[1]<-"pred_y"
-    }
+      names(ypred)[1]<-"ypred"
+    }else if(object$modelType=="multiClass"){
 
-    if(object$modelType=="multiClass"){
-      ypred$pred_y<-stringr::str_remove_all(ypred$pred_y,"pred_y..s.._")
+      ypred$ypred<-stringr::str_remove_all(ypred$ypred,"y..s.._")
 
-      names(ypred)<-stringr::str_remove_all(names(ypred),"pred_y..s.._")
-    }
+      names(ypred)<-stringr::str_remove_all(names(ypred),"y..s.._")
 
-    ypred<-ypred[,-which(names( ypred)%in%"rowname")]
+      if(length(unique(ypred$ypred))>sum(!names(ypred)%in%c('rowname','ypred'))){
+        for(coli in unique(ypred$ypred)[!unique(ypred$ypred)%in% names(ypred)]  ){
 
-    ProbCols<- names(ypred)[!names(ypred)%in%"pred_y"]
+          ypred[,coli]<-ifelse(ypred$ypred==coli,
+                               1,0)
+        }
+
+      }
+
+
+      colnames<- names(ypred)[!names(ypred)%in%"rowname"]
+
+    ypred<-data.frame(ypred[,!names( ypred)%in%"rowname"])
+
+    names(ypred)<-colnames
+
+    ProbCols<- names(ypred)[!names(ypred)%in%"ypred"]
 
     ypred$ProbSum <-rowSums(ypred[,ProbCols])
 
-    for( icol in ProbCols ){
+    for( icol in 1:length(ProbCols) ){
     ypred[,icol]<-ifelse(ypred$ProbSum==0 &
-                                as.character(icol)==
-                                  as.character(ypred$pred_y)
-                                ,1,0
+                                as.character(ypred[,icol])==
+                                  as.character(ypred$ypred)
+                                ,1,as.character(ypred[,icol])
                                 )
     }
 
+}
 
+   finColNames<-names(ypred)
+   finColNames<-finColNames[!finColNames%in%c("rowname","ProbSum")]
 
+   ypred=ypred[,finColNames]
+   names(ypred)<-finColNames
 
     return(data.frame(ypred))
   }

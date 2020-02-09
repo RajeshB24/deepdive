@@ -30,7 +30,9 @@ multiDataCut<-function(x,y,networkCount,cutDataSizePercent,cutVarSizePercent,see
   varCut<- multiVariableCut(x,cutVarSizePercent,networkCount,seed)
 
   xCut<-lapply(1:networkCount, function(nc){
-    x[cutIndex[[nc]],varCut[[nc]]]
+   xcut<- data.frame(x[cutIndex[[nc]],varCut[[nc]]])
+   names(xcut)<-varCut[[nc]]
+   xcut
 
   })
 
@@ -52,3 +54,4 @@ multiDataCut<-function(x,y,networkCount,cutDataSizePercent,cutVarSizePercent,see
               varCut=varCut))
 
 }
+
