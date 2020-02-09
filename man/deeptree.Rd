@@ -125,7 +125,7 @@ treeMinSplitCount=100,
 stackPred =NA,
 stopError=4,
 miniBatchSize=64,
-useBatchProgress=T,
-ignoreNAerror=F)
+useBatchProgress=TRUE,
+ignoreNAerror=FALSE)
 
 }

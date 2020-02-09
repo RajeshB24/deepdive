@@ -68,8 +68,8 @@
 #'stackPred =NA,
 #'stopError=4,
 #'miniBatchSize=64,
-#'useBatchProgress=True,
-#'ignoreNAerror=False)
+#'useBatchProgress=TRUE,
+#'ignoreNAerror=FALSE)
 
 #'
 
