@@ -37,7 +37,7 @@ predict.deeptree <-
 
     if (sum(useStackPred) > 0) {
       if (is.na(sum(stackPred))) {
-        print('stackPred is required')
+        warning('stackPred is required')
 
       }
     }
@@ -47,7 +47,7 @@ predict.deeptree <-
 
     if (object[["preBuiltTree"]]) {
       if (is.na(treeLeaves)) {
-        print("missing treeLeaves attribute")
+        warning("missing treeLeaves attribute")
 
 
       }

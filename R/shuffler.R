@@ -30,7 +30,7 @@ shuffler<-function(x,colname,y,model,modelError,seed){
   if( sum(shuffleDf[,colname]==x[,colname])==nrow(x)){
 
 
-   print( paste0(colname," did not shuffle.Try changing Seed"))
+   warning( paste0(colname," did not shuffle.Try changing Seed"))
   }
 
   shufflePred<- predict(model,shuffleDf)
