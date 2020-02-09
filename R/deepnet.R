@@ -33,8 +33,8 @@
 #' @examples
 #' require(deepdive)
 #'
-#' x <- data.frame(a = runif(10),b = runif(10))
-#' y<- data.frame(y=20*x$a +30*x$b+10)
+#' x <- data.frame(x1 = runif(10),x2 = runif(10))
+#' y<- data.frame(y=20*x$x1 +30*x$x2+10)
 #'
 #' #train
 #' modelnet<-deepnet(x,y,c(2,2),

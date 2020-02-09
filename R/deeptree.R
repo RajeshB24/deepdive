@@ -42,10 +42,9 @@
 #'
 #' require(deepdive)
 #'
-#' x <- data.frame(a = runif(1000)*100,
-#' b = runif(1000)*200,
-#' c = runif(1000)*100)
-#' y<- data.frame(y=20*x$a +30* x$b+10*x$c +10)
+#' x <- data.frame(x1 = runif(10),x2 = runif(10))
+#'
+#' y<- data.frame(y=20*x$x1 +30* x$x2 +10)
 #'
 #' deepTreeMod<-deeptree(x,
 #'y,
