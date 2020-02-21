@@ -73,7 +73,8 @@ deepnet<- function(x,
                     stopError=0.01,
                     miniBatchSize=NA,
                     useBatchProgress=T,
-                    ignoreNAerror=F
+                    ignoreNAerror=F,
+                    normalise=F
 ) {
 
   if(modelType=="multiClass"){
@@ -108,8 +109,13 @@ deepnet<- function(x,
   }
 
   #Input Normalisation
+
+  if(normalise==T){
   inColMax=sapply(x, max )
-  inColMin=sapply(x, min)
+  inColMin=sapply(x, min)}else{
+    inColMax=rep(1,ncol(x))
+    inColMin=rep(0, ncol(x))
+  }
 
 
   for(i in 1:ncol(x)){
@@ -117,8 +123,13 @@ deepnet<- function(x,
   }
 
   #Output Normalisation
-  outColMax=sapply(y, max)
-  outColMin=sapply(y, min)
+
+  if(normalise==T){
+    outColMax=sapply(y, max )
+    outColMin=sapply(y, min)}else{
+      outColMax=rep(1,ncol(y))
+      outColMin=rep(0, ncol(y))
+    }
 
   for(i in 1:ncol(y)){
     y[,i]<- (y[,i]-outColMin[i])/(outColMax[i]-outColMin[i])
