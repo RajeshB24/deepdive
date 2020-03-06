@@ -62,7 +62,8 @@ backProp <- function(x,y,
                Rb=parRmsProp*prev_Rb+(1-parRmsProp)*(db)^2
 
                previousWeightAdapt[[i]]<-Rw
-               previousBiasAdapt[[i]]<-Rb}
+               previousBiasAdapt[[i]]<-Rb
+               }
 
              if(optimiser=="momentum"){
                dw=Mw

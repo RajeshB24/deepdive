@@ -93,7 +93,6 @@ deepnet<- function(x,
    if(is.character(y)){
      y<-as.factor(y)
    }
-
    if(modelType=="multiClass"){
      y<-dummy_cols(y)[,-1]
 
