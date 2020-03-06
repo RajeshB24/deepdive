@@ -27,7 +27,7 @@ deepnet(
   miniBatchSize = NA,
   useBatchProgress = T,
   ignoreNAerror = F,
-  normalise = F
+  normalise = T
 )
 }
 \arguments{
@@ -74,6 +74,8 @@ deepnet(
 \item{useBatchProgress}{logical. Applicable for miniBatch , setting T will use show rmse in Batch and F will show error on full dataset. For large dataset set T}
 
 \item{ignoreNAerror}{logical. Set T if iteration needs to be stopped when predictions become NA}
+
+\item{normalise}{logical. Set F if normalisation not required.Default T}
 }
 \value{
 returns model object which can be passed into \code{\link{predict.deepnet}}
