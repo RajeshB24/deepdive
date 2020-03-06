@@ -23,7 +23,7 @@
 #' @param miniBatchSize integer. Set the mini batch size for mini batch gradient
 #' @param useBatchProgress logical. Applicable for miniBatch , setting T will use show rmse in Batch and F will show error on full dataset. For large dataset set T
 #' @param ignoreNAerror logical. Set T if iteration needs to be stopped when predictions become NA
-#'
+#' @param normalise logical. Set F if normalisation not required.Default T
 #'
 #' @return returns model object which can be passed into \code{\link{predict.deepnet}}
 #' @export
@@ -74,7 +74,7 @@ deepnet<- function(x,
                     miniBatchSize=NA,
                     useBatchProgress=T,
                     ignoreNAerror=F,
-                    normalise=F
+                    normalise=T
 ) {
 
   if(modelType=="multiClass"){
