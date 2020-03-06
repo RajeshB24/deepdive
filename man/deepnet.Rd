@@ -26,7 +26,8 @@ deepnet(
   stopError = 0.01,
   miniBatchSize = NA,
   useBatchProgress = T,
-  ignoreNAerror = F
+  ignoreNAerror = F,
+  normalise = F
 )
 }
 \arguments{
