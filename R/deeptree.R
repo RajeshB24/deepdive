@@ -96,11 +96,11 @@ deeptree<-function(     x,
                         treeCp=0.01 ,
                         stackPred=NA,
                         printItrSize=100,
-                        showProgress=T,
+                        showProgress=TRUE,
                         stopError=0.01,
                         miniBatchSize=NA,
-                        useBatchProgress=T,
-                        ignoreNAerror=F){
+                        useBatchProgress=TRUE,
+                        ignoreNAerror=FALSE){
 
 
 
