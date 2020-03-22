@@ -8,7 +8,6 @@ Description: Aims to provide simple intuitive functions to create quick prototyp
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Imports: fastDummies,plyr,rpart,treeClust,data.table,stringr
 URL: https://rajeshb24.github.io/deepdive/
-     
