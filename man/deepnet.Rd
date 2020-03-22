@@ -22,12 +22,12 @@ deepnet(
   parRmsPropZeroAdjust = 10^-8,
   parRmsProp = 0.9999,
   printItrSize = 100,
-  showProgress = T,
+  showProgress = TRUE,
   stopError = 0.01,
   miniBatchSize = NA,
-  useBatchProgress = T,
-  ignoreNAerror = F,
-  normalise = T
+  useBatchProgress = FALSE,
+  ignoreNAerror = FALSE,
+  normalise = TRUE
 )
 }
 \arguments{

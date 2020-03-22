@@ -30,12 +30,12 @@ deepforest(
   treeMinSplitCount = 100,
   treeCp = 0.01,
   errorCover = 0.2,
-  treeAugment = T,
+  treeAugment = TRUE,
   printItrSize = 100,
-  showProgress = T,
+  showProgress = TRUE,
   stopError = 0.01,
   miniBatchSize = NA,
-  useBatchProgress = T
+  useBatchProgress = TRUE
 )
 }
 \arguments{
