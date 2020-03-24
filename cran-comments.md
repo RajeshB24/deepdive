@@ -10,12 +10,9 @@
  This is a new release.
 
 fixed as per below :
-In your description:  models. In
+Thanks, please only single quote software names in your Description text. (deeptree and deepforest is software function names)
 
-Please always write non-English usage, package names, software names and
-API names in undirected single quotes in title and description in the
-DESCRIPTION file. e.g:'deeptree'
+Please correct in your Description text:
 
-Please always write TRUE and FALSE instead of T and F.
-Also never name your variables T or F.
+models.In --> models. In
 
