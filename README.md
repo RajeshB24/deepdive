@@ -7,6 +7,8 @@
 
 <!-- badges: start -->
 
+[![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive)
+[![](https://img.shields.io/badge/Dev-1.0.1-green.svg)](https://rajeshb24.github.io/deepdive/)
 <!-- badges: end -->
 
 This package aims to provide simple intuitive functions to create quick
@@ -68,15 +70,15 @@ library(deepdive)
  optimiser="adam")
 ```
 
-    ## iteration 3: 3541.83797864372
+    ## iteration 3: 3611.32786255431
 
-    ## iteration 7: 2721.29733067513
+    ## iteration 7: 2756.36166658289
 
-    ## iteration 11: 2019.73764469725
+    ## iteration 11: 2010.70092102176
 
-    ## iteration 15: 2032.21257432338
+    ## iteration 15: 2017.43535666894
 
-    ## iteration 20: 2143.88935202356
+    ## iteration 20: 2138.26387949984
 
 ``` r
  #predict
