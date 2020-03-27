@@ -33,10 +33,16 @@ and doubts or you can always leave a comment on github.
 
 ## Installation
 
-You can install the released version of deepdive from
-[GitHub](https://github.com/RajeshB24/deepdive) with:
+You can install released version from CRAN or development from github
+deepdive from [GitHub](https://github.com/RajeshB24/deepdive) with:
 
 ``` r
+
+#CRAN
+
+install.packages("deepdive")
+
+#Development Version
 devtools::install_github("RajeshB24/deepdive")
 ```
 
@@ -62,11 +68,15 @@ library(deepdive)
  optimiser="adam")
 ```
 
-    ## [1] "iteration 3: 3626.9673670977"
-    ## [1] "iteration 7: 2777.19783594767"
-    ## [1] "iteration 11: 2021.14872706234"
-    ## [1] "iteration 15: 2010.16569753942"
-    ## [1] "iteration 20: 2141.09636263043"
+    ## iteration 3: 3541.83797864372
+
+    ## iteration 7: 2721.29733067513
+
+    ## iteration 11: 2019.73764469725
+
+    ## iteration 15: 2032.21257432338
+
+    ## iteration 20: 2143.88935202356
 
 ``` r
  #predict

@@ -28,9 +28,15 @@ This package aims to provide simple intuitive functions to create quick prototyp
 
 ## Installation
 
-You can install the released version of deepdive from [GitHub](https://github.com/RajeshB24/deepdive) with:
-
+You can install released version from CRAN or development from github deepdive from [GitHub](https://github.com/RajeshB24/deepdive) with:
+ 
 ``` r
+
+#CRAN
+
+install.packages("deepdive")
+
+#Development Version
 devtools::install_github("RajeshB24/deepdive")
 ```
 
