@@ -1,8 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-![Image
-description](https://i.ibb.co/Snv5grs/deepdivelogo.png)
+<p align="center">
+
+<img  src="https://i.ibb.co/Snv5grs/deepdivelogo.png">
+
+</p>
 
 [![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive)
 [![](https://img.shields.io/badge/Dev-1.0.1-green.svg)](https://rajeshb24.github.io/deepdive/)
@@ -70,15 +73,15 @@ library(deepdive)
  optimiser="adam")
 ```
 
-    ## iteration 3: 3593.52558741016
+    ## iteration 3: 3411.16051267071
 
-    ## iteration 7: 2731.75840262419
+    ## iteration 7: 2604.11288801726
 
-    ## iteration 11: 1993.26516346904
+    ## iteration 11: 1937.08720004024
 
-    ## iteration 15: 2022.85779241084
+    ## iteration 15: 1989.74302007208
 
-    ## iteration 20: 2138.21168424366
+    ## iteration 20: 2087.62656554103
 
 ``` r
  #predict
