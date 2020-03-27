@@ -8,14 +8,19 @@ output: github_document
 
 
 
+
+
+
+
+
+
+![Image description](https://i.ibb.co/Snv5grs/deepdivelogo.png)
+
+[![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive) [![](https://img.shields.io/badge/Dev-1.0.1-green.svg)](https://rajeshb24.github.io/deepdive/)
+
 # deepdive
 
-
 **deepnet->deeptree->deepforest**
-
-<!-- badges: start -->
-[![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive)     [![](https://img.shields.io/badge/Dev-1.0.1-green.svg)](https://rajeshb24.github.io/deepdive/)
-<!-- badges: end -->
 
 This package aims to provide simple intuitive functions to create quick prototypes of artificial neural network or deep learning models for general purpose application. In addition, check out experimental algorithms from my personal research , **deeptree** and **deepforest** for special cases to achieve better accuracy / generalization.
 

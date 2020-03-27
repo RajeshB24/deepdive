@@ -1,15 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# deepdive
-
-**deepnet-\>deeptree-\>deepforest**
-
-<!-- badges: start -->
+![Image
+description](https://i.ibb.co/Snv5grs/deepdivelogo.png)
 
 [![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive)
 [![](https://img.shields.io/badge/Dev-1.0.1-green.svg)](https://rajeshb24.github.io/deepdive/)
-<!-- badges: end -->
+
+# deepdive
+
+**deepnet-\>deeptree-\>deepforest**
 
 This package aims to provide simple intuitive functions to create quick
 prototypes of artificial neural network or deep learning models for
@@ -70,15 +70,15 @@ library(deepdive)
  optimiser="adam")
 ```
 
-    ## iteration 3: 3611.32786255431
+    ## iteration 3: 3593.52558741016
 
-    ## iteration 7: 2756.36166658289
+    ## iteration 7: 2731.75840262419
 
-    ## iteration 11: 2010.70092102176
+    ## iteration 11: 1993.26516346904
 
-    ## iteration 15: 2017.43535666894
+    ## iteration 15: 2022.85779241084
 
-    ## iteration 20: 2138.26387949984
+    ## iteration 20: 2138.21168424366
 
 ``` r
  #predict
