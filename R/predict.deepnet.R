@@ -105,10 +105,11 @@ predict.deepnet=function(object,
   ypred<-data.frame(ypred)
 
   if(singlerow==T){
+    namepred=names(ypred)
     ypred=data.frame(ypred[1,])
+    names(ypred)=namepred
   }
 
-  names(ypred)<-names(ypred)
 
 
   if(modelType=="multiClass"){
