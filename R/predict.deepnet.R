@@ -14,7 +14,7 @@
 
 
 
-deepnetpred=function(object,
+predict.deepnet=function(object,
                      newData,...){
 
   singlerow=F
