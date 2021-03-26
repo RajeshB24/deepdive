@@ -108,8 +108,12 @@ predict.deepnet=function(object,
   if(singlerow==T){
     namepred=names(ypred)
     ypred=data.frame(ypred[1,])
+<<<<<<< HEAD
     if(modelType=='regress'){
     names(ypred)='ypred'}
+=======
+    names(ypred)=namepred
+>>>>>>> 113deeca2c4b5b1e37bdcee1a6058787c84d967d
   }
 
 
