@@ -99,6 +99,7 @@ predict.deepnet=function(object,
   for(i in 1:ncol(ypred)){
     ypred[,i]<-ypred[,i]*(outColMax[i]-outColMin[i])+outColMin[i]
 
+
     ypred[,i]= ypred[,i]
   }
 
