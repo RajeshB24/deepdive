@@ -13,10 +13,21 @@
 #' @importFrom stats formula predict runif
 
 
-predict.deepnet<-function(object,
-                          newData,...){
+
+deepnetpred=function(object,
+                     newData,...){
+
+  singlerow=F
+  if(nrow(newData)==1){
+    #create duplicate row if data has only one row
+    newData=   rbind(newData,newData)
+    singlerow=T
+  }
+
+
 
   if (!inherits(object, "deepnet")) stop("Not a legitimate \"deepnet\" object")
+
   newData<-data.frame(newData)
   weightMatrix=object[["weightMatrix"]]
   activation=object[["activation"]]
@@ -29,7 +40,7 @@ predict.deepnet<-function(object,
   xcolnames=object[['xcolnames']]
 
   if(length(xcolnames)>1){
-  newData<-newData[,xcolnames]
+    newData<-newData[,xcolnames]
   }
 
   xType<-sapply(newData,class)
@@ -48,25 +59,26 @@ predict.deepnet<-function(object,
 
   for(i in 1:ncol(newData)){
     newData[,i]<- (newData[,i]-inColMin[i])/(inColMax[i]-inColMin[i])
-    }
+  }
 
 
   newData<-as.matrix(cbind(const = rep(1, nrow(newData)), newData))
 
 
   if(ncol(newData)>2){
-   reqmat<-matrix(1,ncol = nrow(weightMatrix[[1]]))
+
+    reqmat<-matrix(1,ncol = nrow(weightMatrix[[1]]))
 
 
-  colnames(reqmat)<-row.names(weightMatrix[[1]])
+    colnames(reqmat)<-row.names(weightMatrix[[1]])
 
 
-  newData<-plyr::rbind.fill(as.data.frame(reqmat),
-                        as.data.frame(newData))
+    newData<-plyr::rbind.fill(as.data.frame(reqmat),
+                              as.data.frame(newData))
 
 
-  newData<-as.matrix(newData[-1,])
-  newData<- newData[,colnames(reqmat)]
+    newData<-as.matrix(newData[-1,])
+    newData<- newData[,colnames(reqmat)]
   }
 
   newData[is.na(newData)]<-0
@@ -91,6 +103,11 @@ predict.deepnet<-function(object,
   }
 
   ypred<-data.frame(ypred)
+
+  if(singlerow==T){
+    ypred=data.frame(ypred[1,])
+  }
+
   names(ypred)<-names(ypred)
 
 
@@ -104,5 +121,3 @@ predict.deepnet<-function(object,
 
   return(ypred)
 }
-
-
