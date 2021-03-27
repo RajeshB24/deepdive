@@ -76,7 +76,10 @@ predict.deeptree <-
       if (!useStackPred[[mg]]) {
         if (class(modelGroup[[mg]]) == "deepnet") {
           if (length(xCols[[mg]]) == 1) {
-            predict.deepnet(modelGroup[[mg]], newDataSplit[[mg]])
+            predict.deepnet(modelGroup[[mg]],
+                            data.frame(newDataSplit[[mg]][,
+                                                          xCols[[mg]]]))
+
           }
           else {
             predict.deepnet(modelGroup[[mg]], newDataSplit[[mg]][,
