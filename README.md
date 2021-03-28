@@ -1,45 +1,27 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <p align="center">
-
 <img  src="https://i.ibb.co/Snv5grs/deepdivelogo.png">
-
 </p>
+[![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive) [![](https://img.shields.io/badge/Dev-1.0.2-green.svg)](https://rajeshb24.github.io/deepdive/)
 
-[![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive)
-[![](https://img.shields.io/badge/Dev-1.0.1-green.svg)](https://rajeshb24.github.io/deepdive/)
+deepdive
+========
 
-# deepdive
+**deepnet-&gt;deeptree-&gt;deepforest**
 
-**deepnet-\>deeptree-\>deepforest**
+This package aims to provide simple intuitive functions to create quick prototypes of artificial neural network or deep learning models for general purpose application. In addition, check out experimental algorithms from my personal research , **deeptree** and **deepforest** for special cases to achieve better accuracy / generalization.
 
-This package aims to provide simple intuitive functions to create quick
-prototypes of artificial neural network or deep learning models for
-general purpose application. In addition, check out experimental
-algorithms from my personal research , **deeptree** and **deepforest**
-for special cases to achieve better accuracy / generalization.
+**deeptree**: This algorithm builds a CART tree to divide the solution space in to leaves and fits an artificial neural network to each leaf. This approach takes advantage of distinct properties of a tree and neural network. It has tendency to overfit but multiple parameters can be tuned to achieve better generalization. This model has a provision to stack predictions from other models(currently stacking is only available for regression).
 
-**deeptree**: This algorithm builds a CART tree to divide the solution
-space in to leaves and fits an artificial neural network to each leaf.
-This approach takes advantage of distinct properties of a tree and
-neural network. It has tendency to overfit but multiple parameters can
-be tuned to achieve better generalization. This model has a provision to
-stack predictions from other models(currently stacking is only available
-for regression).
+**deepforest**: This algorithm builds multiple deepnets/deeptrees from which either best deepnet can be selected by passing all variable and data to each network or random deepnets/deeptrees based on random cuts of variable/data can be combined together over a error choice.
 
-**deepforest**: This algorithm builds multiple deepnets/deeptrees from
-which either best deepnet can be selected by passing all variable and
-data to each network or random deepnets/deeptrees based on random cuts
-of variable/data can be combined together over a error choice.
+*Reach me Out* : <rajeshbalakrishnan24@gmail.com> for any suggestions and doubts or you can always leave a comment on github.
 
-*Reach me Out* : <rajeshbalakrishnan24@gmail.com> for any suggestions
-and doubts or you can always leave a comment on github.
+Installation
+------------
 
-## Installation
-
-You can install released version from CRAN or development from github
-deepdive from [GitHub](https://github.com/RajeshB24/deepdive) with:
+You can install released version from CRAN or development from github deepdive from [GitHub](https://github.com/RajeshB24/deepdive) with:
 
 ``` r
 
@@ -51,7 +33,8 @@ install.packages("deepdive")
 devtools::install_github("RajeshB24/deepdive")
 ```
 
-## Example
+Example
+-------
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -73,15 +56,15 @@ library(deepdive)
  optimiser="adam")
 ```
 
-    ## iteration 3: 3411.16051267071
+    ## iteration 3: 3359.22108435581
 
-    ## iteration 7: 2604.11288801726
+    ## iteration 7: 2554.63898791826
 
-    ## iteration 11: 1937.08720004024
+    ## iteration 11: 1915.7546002696
 
-    ## iteration 15: 1989.74302007208
+    ## iteration 15: 1985.83904990596
 
-    ## iteration 20: 2087.62656554103
+    ## iteration 20: 2064.14993418153
 
 ``` r
  #predict

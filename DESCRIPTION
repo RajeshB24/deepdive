@@ -1,13 +1,13 @@
 Package: deepdive
 Type: Package
 Title: Deep Learning for General Purpose
-Version: 1.0.1
+Version: 1.0.2
 Author: Rajesh Balakrishnan
 Maintainer: Rajesh Balakirshnan <rajeshbalakrishnan24@gmail.com> 
 Description: Aims to provide simple intuitive functions to create quick prototypes of artificial neural network or deep learning models. In addition novel ensemble models like 'deeptree' and 'deepforest' has been included which combines decision trees and neural network.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Imports: fastDummies,plyr,rpart,treeClust,data.table,stringr
 URL: https://rajeshb24.github.io/deepdive/
