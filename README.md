@@ -3,15 +3,12 @@
 <p align="center">
 <img  src="https://i.ibb.co/Snv5grs/deepdivelogo.png">
 </p>
-<!--
-[![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive) [![](https://img.shields.io/badge/Dev-1.0.1-green.svg)](https://rajeshb24.github.io/deepdive/)
- -->
 deepdive
 ========
 
-##### \*\*\*\*Github version has been updated with minor bug fixes. CRAN version will be updated soon\*\*\*\*
-
 **deepnet-&gt;deeptree-&gt;deepforest**
+
+**Github version has been updated with minor bug fixes. CRAN version will be updated soon**
 
 This package aims to provide simple intuitive functions to create quick prototypes of artificial neural network or deep learning models for general purpose application. In addition, check out experimental algorithms from my personal research , **deeptree** and **deepforest** for special cases to achieve better accuracy / generalization.
 
@@ -59,15 +56,15 @@ library(deepdive)
  optimiser="adam")
 ```
 
-    ## iteration 3: 3580.55057918016
+    ## iteration 3: 3404.13195048089
 
-    ## iteration 7: 2722.33235343236
+    ## iteration 7: 2611.93257862008
 
-    ## iteration 11: 1956.40312526798
+    ## iteration 11: 1965.92909213376
 
-    ## iteration 15: 1954.60726084647
+    ## iteration 15: 2018.53974289299
 
-    ## iteration 20: 2085.9751827626
+    ## iteration 20: 2111.27471560349
 
 ``` r
  #predict
