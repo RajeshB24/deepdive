@@ -13,6 +13,7 @@
 # deepdive
 
 **deepnet-\>deeptree-\>deepforest**
+
 **Github version has been updated with minor bug fixes.Will be upated in CRAN soon.**
 
 This package aims to provide simple intuitive functions to create quick
