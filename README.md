@@ -3,10 +3,13 @@
 <p align="center">
 <img  src="https://i.ibb.co/Snv5grs/deepdivelogo.png">
 </p>
-[![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive) [![](https://img.shields.io/badge/Dev-1.0.2-green.svg)](https://rajeshb24.github.io/deepdive/)
-
+<!--
+[![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive) [![](https://img.shields.io/badge/Dev-1.0.1-green.svg)](https://rajeshb24.github.io/deepdive/)
+ -->
 deepdive
 ========
+
+##### \*\*\*\*Github version has been updated with minor bug fixes. CRAN version will be updated soon\*\*\*\*
 
 **deepnet-&gt;deeptree-&gt;deepforest**
 
@@ -56,15 +59,15 @@ library(deepdive)
  optimiser="adam")
 ```
 
-    ## iteration 3: 3359.22108435581
+    ## iteration 3: 3582.23214595618
 
-    ## iteration 7: 2554.63898791826
+    ## iteration 7: 2724.77152267514
 
-    ## iteration 11: 1915.7546002696
+    ## iteration 11: 1971.25168509678
 
-    ## iteration 15: 1985.83904990596
+    ## iteration 15: 1978.26429099666
 
-    ## iteration 20: 2064.14993418153
+    ## iteration 20: 2101.958256286
 
 ``` r
  #predict
