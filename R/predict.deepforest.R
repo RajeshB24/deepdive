@@ -30,7 +30,7 @@ predict.deepforest<-function (object, newData, ...)
       names(xFit) <- varCut[[o]]
       deepnetPred <- predict.deepnet(modelGroup[[o]], xFit)
 
-      if(deepforestMod$modelType!='regress'){
+      if(object$modelType!='regress'){
         deepnetPred <- deepnetPred[, names(deepnetPred) != "ypred"]
       }
 
