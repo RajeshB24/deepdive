@@ -59,15 +59,15 @@ library(deepdive)
  optimiser="adam")
 ```
 
-    ## iteration 3: 3582.23214595618
+    ## iteration 3: 3580.55057918016
 
-    ## iteration 7: 2724.77152267514
+    ## iteration 7: 2722.33235343236
 
-    ## iteration 11: 1971.25168509678
+    ## iteration 11: 1956.40312526798
 
-    ## iteration 15: 1978.26429099666
+    ## iteration 15: 1954.60726084647
 
-    ## iteration 20: 2101.958256286
+    ## iteration 20: 2085.9751827626
 
 ``` r
  #predict
