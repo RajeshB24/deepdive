@@ -9,3 +9,4 @@
 ^pkgdown$
 ^figures$
 ^logo\.png$
+^.Rhistory
