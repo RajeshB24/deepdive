@@ -10,3 +10,4 @@
 ^figures$
 ^logo\.png$
 ^.Rhistory
+^man\figures$
