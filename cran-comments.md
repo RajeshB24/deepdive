@@ -7,12 +7,6 @@
 
 0 errors | 0 warnings | 1 note
 
- This is a new release.
+'LazyData' is specified without a 'data' directory
 
-fixed as per below :
-Thanks, please only single quote software names in your Description text. (deeptree and deepforest is software function names)
-
-Please correct in your Description text:
-
-models.In --> models. In
-
+No folders contain any data.
