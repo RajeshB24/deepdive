@@ -136,10 +136,15 @@ predict.deeptree <-
                                                                                                                                    icol]))
       }
     }
-    finColNames <- names(ypred)
-    finColNames <- finColNames[!finColNames %in% c("rowname",
-                                                   "ProbSum")]
-    ypred = ypred[, finColNames]
-    names(ypred) <- finColNames
+    if(object$modelType=='regress'){
+      ypred<-ypred['ypred']
+
+    }else{
+
+      finColNames <- names(ypred)
+      finColNames <- finColNames[!finColNames %in% c("rowname",
+                                                     "ProbSum")]
+      ypred = ypred[, finColNames]
+      names(ypred) <- finColNames}
     return(data.frame(ypred))
   }
