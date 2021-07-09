@@ -6,6 +6,11 @@
 
 [![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive)
 [![](https://img.shields.io/badge/Dev-1.0.3-green.svg)](https://rajeshb24.github.io/deepdive/)
+ 
+### Bug Fix: Deeptree algorithm is reordering rows in prediction. Use github version till CRAN version is updated to 1.0.3 with latest fix.
+
+### Alternative solution : Re-order deeptree predicted dataframe based on rownames
+    pred = pred[order(as.numeric(rownames(pred))),]
 
 ## deepdive
 
