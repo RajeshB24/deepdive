@@ -5,7 +5,7 @@
 <img  src="https://i.ibb.co/Snv5grs/deepdivelogo.png">
 
 [![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive)
-[![](https://img.shields.io/badge/Dev-1.0.2-green.svg)](https://rajeshb24.github.io/deepdive/)
+[![](https://img.shields.io/badge/Dev-1.0.3-green.svg)](https://rajeshb24.github.io/deepdive/)
 
 ## deepdive
 
