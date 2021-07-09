@@ -106,7 +106,7 @@ predict.deeptree <-
 
     ypred[is.na(ypred)] = 0
 
-    ypred <- ypred[order(ypred$rowname), ]
+    ypred <- ypred[order(as.numeric(row.names(ypred))), ]
 
 
 
@@ -146,5 +146,6 @@ predict.deeptree <-
                                                      "ProbSum")]
       ypred = ypred[, finColNames]
       names(ypred) <- finColNames}
+
     return(data.frame(ypred))
   }
