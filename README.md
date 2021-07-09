@@ -7,7 +7,7 @@
 [![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive)
 [![](https://img.shields.io/badge/Dev-1.0.3-green.svg)](https://rajeshb24.github.io/deepdive/)
  
-### Bug Fix: Deeptree algorithm prediction was re-ordering the dataframe. Re-install to update from 1.0.2 to 1.0.3 version
+### Bug Fix: Deeptree algorithm prediction was re-ordering the dataframe. Re-install to update from 1.0.2 to 1.0.3 version from github.Cran version update in progress
 
 
 ## deepdive
