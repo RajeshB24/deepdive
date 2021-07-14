@@ -6,9 +6,6 @@
 
 [![](https://www.r-pkg.org/badges/version/deepdive?color=green)](https://cran.r-project.org/package=deepdive)
 [![](https://img.shields.io/badge/Dev-1.0.4-green.svg)](https://rajeshb24.github.io/deepdive/)
- 
-### Bug Fix: CRAN yet update in progress. Fixed deeptree algorithm mismatched prediction. Re-install updated version from Github. 
-
 
 ## deepdive
 
