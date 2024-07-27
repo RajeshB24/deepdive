@@ -9,6 +9,8 @@
 [![](https://cranlogs.r-pkg.org/badges/grand-total/deepdive)](https://rajeshb24.github.io/deepdive/)
 [![](https://cranlogs.r-pkg.org/badges/deepdive)](https://rajeshb24.github.io/deepdive/)
 
+https://www.buymeacoffee.com/rajesh.balakrishnan
+
  
 ## deepdive
 
